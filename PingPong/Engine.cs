@@ -15,11 +15,11 @@ public class Engine
     private HubConnection Hub { get; set; } = null!;
     private async void UI_Change()
     {
-        if (Hub != null ||this.PmT.Status  is Progress.manager.Status.Install or Progress.manager.Status.Cancel || Hub.State is not HubConnectionState.Disconnected) return;
         if (this.UI.Network is Unit.infomation.Network.Online)
         {
             this.Hub = new HubConnectionBuilder().WithUrl("https://win-9ndprc00ff9.object.social/PongPing.Services").WithAutomaticReconnect().Build();
             await this.Hub.StartAsync();
+            Console.WriteLine(this.Hub.State);
         }
         else this.PmT.Cancel(); 
     }
