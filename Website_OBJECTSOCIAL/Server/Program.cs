@@ -3,7 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddCors(x => { 
-    x.AddPolicy("signalr_policy",x=>x.WithOrigins("object.social","memory.claims","good.claims","bad.claims", "www.object.social", "www.memory.claims", "www.good.claims", "www.bad.claims", "localhost"));
+    x.AddPolicy("signalr_policy",x=>x.WithOrigins("object.social","memory.claims","good.claims","bad.claims", "localhost").SetIsOriginAllowedToAllowWildcardSubdomains());
 
 });
 builder.Services.AddScoped(x => new Product.Infomation { Name = Product.infomation.Name.OBJECTSOCIAL, Software = Product.infomation.Software.Server });
@@ -20,6 +20,6 @@ app.UseCors();
 app.UseRouting();
 app.MapRazorPages();
 app.MapControllers();
-app.MapHub<PongPing.Services>("/PongPing.Services");
+app.MapHub<PongPing.Services>("/PongPing.Services").RequireCors("signalr_policy");
 app.MapFallbackToFile("index.html");
 app.Run();
