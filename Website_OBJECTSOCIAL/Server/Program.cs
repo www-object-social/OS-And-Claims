@@ -3,7 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddCors(x => { 
-    x.AddPolicy("signalr_policy",x=>x.WithOrigins("https://object.social","https://memory.claims","https://good.claims","https://bad.claims", "https://www.object.social", "https://www.memory.claims", "https://www.good.claims", "https://www.bad.claims", "https://localhost"));
+    x.AddPolicy("signalr_policy",x=>x.WithOrigins("object.social","memory.claims","good.claims","bad.claims", "www.object.social", "www.memory.claims", "www.good.claims", "www.bad.claims", "localhost"));
 
 });
 builder.Services.AddScoped(x => new Product.Infomation { Name = Product.infomation.Name.OBJECTSOCIAL, Software = Product.infomation.Software.Server });
