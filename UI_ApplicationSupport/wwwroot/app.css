@@ -1,17 +1,17 @@
 ﻿.ui-application object {
     height: 25px;
     margin: 2px;
-    display:inline-block;
-    pointer-events:all;
- 
+    display: inline-block;
+    pointer-events: all;
 }
+
 .ui-application {
     position: absolute;
     bottom: 80px;
     width: 100%;
     text-align: center;
-  
 }
-    .ui-application *,svg {
-        cursor: pointer;
-    }
+
+svg {
+    cursor: pointer;
+}
