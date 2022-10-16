@@ -1,0 +1,24 @@
+﻿@font-face {
+    font-family: 'square_sans_serif_7regular';
+    src: url('square_sans_serif_7.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+*, *:focus {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    cursor: default;
+    font-family: 'square_sans_serif_7regular';
+    user-select: none;
+}
+body {
+    background: #000;
+}
+main[website] {
+    position: absolute;
+    min-width: 430px;
+    width: 100%;
+    min-height: 600px;
+    height: 100%;
+}

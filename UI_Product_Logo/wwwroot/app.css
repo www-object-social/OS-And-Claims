@@ -1,0 +1,6 @@
+﻿.logo {
+    width:200px;
+    position:absolute;
+    right:calc(50% - 100px);
+    bottom:60%;
+}

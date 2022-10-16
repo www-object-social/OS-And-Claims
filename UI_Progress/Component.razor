@@ -1,0 +1,9 @@
+﻿@if (PM.Status is Progress.manager.Status.Done) return;
+<div class="progress"></div>
+@code{
+    protected override Task OnInitializedAsync()
+    {
+        PM.Change += () => InvokeAsync(this.StateHasChanged);
+        return base.OnInitializedAsync();
+    }
+}

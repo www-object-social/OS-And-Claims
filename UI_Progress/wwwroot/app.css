@@ -1,0 +1,22 @@
+﻿@keyframes p-0 {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.progress {
+    background: repeating-linear-gradient(to right, red 0%, blue 50%, red 100%);
+    width: 100%;
+    background-size: 200% auto;
+    background-position: 0 100%;
+    animation: p-0 2s infinite;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    height: 3px;
+    position: absolute;
+    bottom: 0;
+}

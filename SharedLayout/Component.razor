@@ -1,0 +1,15 @@
+﻿@inherits LayoutComponentBase
+@Body
+<UI_Product_Logo.Component/>
+<UI_BrowserSupport.Component/>
+<UI_Progress.Component />
+<UI_ApplicationSupport.Component/>
+
+@code{
+    protected override async Task OnInitializedAsync()
+    {
+        PM.Change+=()=>InvokeAsync(this.StateHasChanged);
+
+        //return base.OnInitializedAsync();
+    }
+}

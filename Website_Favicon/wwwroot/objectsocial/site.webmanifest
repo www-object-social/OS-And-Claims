@@ -1,0 +1,19 @@
+{
+  "name": "OBJECT:SOCIAL",
+  "short_name": "OS",
+  "icons": [
+    {
+      "src": "/objectsocial/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/objectsocial/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone"
+}

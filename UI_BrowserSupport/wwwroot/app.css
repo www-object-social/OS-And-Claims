@@ -1,0 +1,10 @@
+﻿.browser-support img {
+    width: 25px;
+    display: inline-block;
+}
+.browser-support {
+    position:absolute;
+    bottom:20px;
+    width:100%;
+    text-align:center;
+}

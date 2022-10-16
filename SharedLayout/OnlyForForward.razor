@@ -1,0 +1,13 @@
+﻿@inherits LayoutComponentBase
+@Body
+<object data="/_content/UI_Product_Logo/OBJECTSOCIAL.svg" class="logo" />
+<UI_BrowserSupport.Component />
+<UI_Progress.Component/>
+@code{
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(50);
+        NM.NavigateTo("https://object.social");
+        await base.OnInitializedAsync();
+    }
+}

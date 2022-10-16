@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.10" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PingPong\PingPong.csproj" />
+    <ProjectReference Include="..\UI_ApplicationSupport\UI_ApplicationSupport.csproj" />
+    <ProjectReference Include="..\UI_BrowserSupport\UI_BrowserSupport.csproj" />
+    <ProjectReference Include="..\UI_Product_Logo\UI_Product_Logo.csproj" />
+    <ProjectReference Include="..\UI_Progress\UI_Progress.csproj" />
+  </ItemGroup>
+</Project>

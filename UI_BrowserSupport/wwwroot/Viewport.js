@@ -1,0 +1,1 @@
+window.addEventListener("load", () => {function Resize() {document.querySelector("[name='viewport']").setAttribute("content", "width=" + function () {if (document.body.clientWidth <= 420)return "420px";return "device-width";}() + ",initial-scale=1")}window.addEventListener("resize", Resize); Resize();});

@@ -1,0 +1,9 @@
+﻿<PageTitle>Bad|Claims</PageTitle>
+<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(SharedLayout.Component)" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="@typeof(SharedLayout.Component)"/>
+    </NotFound>
+</Router>

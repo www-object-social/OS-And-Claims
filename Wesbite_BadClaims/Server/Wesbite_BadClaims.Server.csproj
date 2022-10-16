@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.10" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PongPing\PongPing.csproj" />
+    <ProjectReference Include="..\..\Product\Product.csproj" />
+    <ProjectReference Include="..\Client\Wesbite_BadClaims.Client.csproj" />
+  </ItemGroup>
+</Project>

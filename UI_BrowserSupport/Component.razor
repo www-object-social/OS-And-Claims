@@ -1,0 +1,16 @@
+﻿@if (PI.Software is not Product.infomation.Software.Browser || PM.Status is Progress.manager.Status.Done or Progress.manager.Status.Download) return;
+<div class="browser-support">
+    <img src="/_content/UI_BrowserSupport/Chrome.png" data-is=@(UI.Type is Unit.infomation.Type.Chrome or Unit.infomation.Type.Unknown?"true":"false") />
+    <img src="/_content/UI_BrowserSupport/Edge.png" data-is=@(UI.Type is Unit.infomation.Type.Edge or Unit.infomation.Type.Unknown?"true":"false") />
+    <img src="/_content/UI_BrowserSupport/Firefox.png" data-is=@(UI.Type is Unit.infomation.Type.Firefox or Unit.infomation.Type.Unknown?"true":"false") />
+    <img src="/_content/UI_BrowserSupport/Opera.png" data-is=@(UI.Type is Unit.infomation.Type.Oprea or Unit.infomation.Type.Unknown?"true":"false") />
+    <img src="/_content/UI_BrowserSupport/Safari.png" data-is=@(UI.Type is Unit.infomation.Type.Safari or Unit.infomation.Type.Unknown?"true":"false") />
+</div>
+@code{
+    protected override Task OnInitializedAsync()
+    {
+        UI.Change += () => InvokeAsync(this.StateHasChanged);
+        PM.Change += () => InvokeAsync(this.StateHasChanged);
+        return base.OnInitializedAsync();
+    }
+}
