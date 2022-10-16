@@ -6,10 +6,10 @@
 <UI_ApplicationSupport.Component/>
 
 @code{
-    protected override async Task OnInitializedAsync()
+    protected override Task OnInitializedAsync()
     {
         PM.Change+=()=>InvokeAsync(this.StateHasChanged);
 
-        //return base.OnInitializedAsync();
+        return base.OnInitializedAsync();
     }
 }
