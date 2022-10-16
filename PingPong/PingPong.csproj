@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Product\Product.csproj" />
     <ProjectReference Include="..\Progress\Progress.csproj" />
     <ProjectReference Include="..\Unit\Unit.csproj" />
