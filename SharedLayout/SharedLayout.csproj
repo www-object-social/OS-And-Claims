@@ -14,6 +14,7 @@
     <ProjectReference Include="..\PingPong\PingPong.csproj" />
     <ProjectReference Include="..\UI_ApplicationSupport\UI_ApplicationSupport.csproj" />
     <ProjectReference Include="..\UI_BrowserSupport\UI_BrowserSupport.csproj" />
+    <ProjectReference Include="..\UI_No_Internet\UI_No_Internet.csproj" />
     <ProjectReference Include="..\UI_Product_Logo\UI_Product_Logo.csproj" />
     <ProjectReference Include="..\UI_Progress\UI_Progress.csproj" />
   </ItemGroup>

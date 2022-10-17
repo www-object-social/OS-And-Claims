@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\PongPing\PongPing.csproj" />
     <ProjectReference Include="..\..\Product\Product.csproj" />
+    <ProjectReference Include="..\..\ServerStorages\ServerStorages.csproj" />
     <ProjectReference Include="..\Client\Wesbite_BadClaims.Client.csproj" />
   </ItemGroup>
 </Project>

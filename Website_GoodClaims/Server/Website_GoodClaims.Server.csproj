@@ -9,6 +9,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PongPing\PongPing.csproj" />
+    <ProjectReference Include="..\..\ServerStorages\ServerStorages.csproj" />
     <ProjectReference Include="..\Client\Website_GoodClaims.Client.csproj" />
   </ItemGroup>
 </Project>

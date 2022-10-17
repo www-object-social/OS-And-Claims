@@ -12,7 +12,9 @@ public class Task:IDisposable
     public event Action Change
     {
         add => ActionChange += value;
+#pragma warning disable CS8601 // Possible null reference assignment.
         remove => ActionChange -= value;
+#pragma warning restore CS8601 // Possible null reference assignment.
     }
     private Status _Status = Status.Done;
     public Status Status {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Graphics;
-namespace MAUI_MemoryClaims.Platforms.Windows;
+namespace MAUI_MemoryClaims.Platforms;
 public static class Frame
 {
     public static void Settings(Microsoft.Maui.Handlers.IWindowHandler handler)
@@ -21,7 +21,15 @@ public static class Frame
         {
             if (s.ClientSize.Height < 600 || s.ClientSize.Width < 600)
             {
-                s.Resize(new SizeInt32(s.ClientSize.Height < 600 ? 600 : s.ClientSize.Height, s.ClientSize.Width < 600 ? 600 : s.ClientSize.Width));
+                try
+                {
+
+                    s.Resize(new SizeInt32(s.ClientSize.Height < 600 ? 600 : s.ClientSize.Height, s.ClientSize.Width < 600 ? 600 : s.ClientSize.Width));
+                }
+                catch (Exception)
+                {
+
+                }
                 return;
             }
         };

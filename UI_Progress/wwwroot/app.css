@@ -7,7 +7,6 @@
         background-position: -200% 0;
     }
 }
-
 .progress {
     background: repeating-linear-gradient(to right, red 0%, blue 50%, red 100%);
     width: 100%;
