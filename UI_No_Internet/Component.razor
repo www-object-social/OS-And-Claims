@@ -1,3 +1,9 @@
-﻿<div class="my-component">
-    This component is defined in the <strong>UI_No_Internet</strong> library.
-</div>
+﻿@if (this.UI.Network is Unit.infomation.Network.Online) return;
+<object data="/_content/UI_No_Internet/cloud.svg" />
+@code{
+    protected override Task OnInitializedAsync()
+    {
+        this.UI.Change += () => InvokeAsync(this.StateHasChanged);
+        return base.OnInitializedAsync();
+    }
+}

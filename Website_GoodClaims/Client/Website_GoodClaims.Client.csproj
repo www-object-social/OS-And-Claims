@@ -7,12 +7,14 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.10" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Product\Product.csproj" />
     <ProjectReference Include="..\..\Progress\Progress.csproj" />
     <ProjectReference Include="..\..\SharedLayout\SharedLayout.csproj" />
     <ProjectReference Include="..\..\Website_Favicon\Website_Favicon.csproj" />
+    <ProjectReference Include="..\..\Website_UnitIdentification\Website_UnitIdentification.csproj" />
     <ProjectReference Include="..\..\Website_Unit\Website_Unit.csproj" />
   </ItemGroup>
 </Project>

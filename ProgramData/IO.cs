@@ -1,5 +1,4 @@
 ﻿namespace ProgramData;
-
 public static class IO
 {
     public static string StringFolderPathName(this string FileName) => $"{Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)}/{FileName}.os-and-claims";

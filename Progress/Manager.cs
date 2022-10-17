@@ -5,10 +5,11 @@ public class Manager
     public event Action Change
     {
         add => ActionChange += value;
+#pragma warning disable CS8601 // Possible null reference assignment.
         remove => ActionChange -= value;
+#pragma warning restore CS8601 // Possible null reference assignment.
     }
     public manager.Status Status { get; private set; } = manager.Status.Startup;
-
     internal async void Update(manager.Status status) {
         if (status == this.Status||(this.Status is manager.Status.Startup&&Tasks.Any(x=>x.Status is manager.Status.Install or manager.Status.Download or manager.Status.Cancel))||(this.Status is manager.Status.Install&& status is manager.Status.Download))return;
         await Task.Delay(20);

@@ -26,8 +26,10 @@
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="CommunityToolkit.Maui" Version="1.3.0" />
+      <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
     </ItemGroup>
     <ItemGroup>
+      <ProjectReference Include="..\MAUI_UnitIdentification\MAUI_UnitIdentification.csproj" />
       <ProjectReference Include="..\MAUI_Unit\MAUI_Unit.csproj" />
       <ProjectReference Include="..\Product\Product.csproj" />
       <ProjectReference Include="..\Progress\Progress.csproj" />

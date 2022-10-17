@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Progress.manager;
-
+﻿namespace Progress.manager;
 public class Task:IDisposable
 {
     private Action ActionChange = null!;
@@ -25,14 +18,11 @@ public class Task:IDisposable
         }
     }
     private readonly Manager manager;
-
     internal Task(Manager manager)=> (this.manager = manager).Tasks.Add(this);
-
     public void Install() => Status = Status.Install;
     public void Done() => Status = Status.Done;
     public void Download() => Status = Status.Download;
     public void Cancel() => Status = Status.Download;
- 
     public void Dispose()
     {
         this.Done();

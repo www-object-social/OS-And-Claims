@@ -1,6 +1,47 @@
-﻿.my-component {
-    border: 2px dashed red;
-    padding: 1em;
-    margin: 1em 0;
-    background-image: url('background.png');
+﻿@keyframes move-sad-cloud {
+    0% {
+        left: -10%;
+        bottom: -10%;
+    }
+
+    80% {
+        left: 50%;
+        bottom: 50%;
+        height: 60px;
+    }
+
+    25% {
+        left: 90%;
+        bottom: 10%;
+        height: 80px;
+    }
+
+    50% {
+        left: 5%;
+        bottom: 10%;
+    }
+
+    75% {
+        left: 70%;
+        bottom: 50%;
+        height: 50px;
+    }
+
+    80% {
+        left: 10%;
+        bottom: 10%;
+    }
+
+    100% {
+        left: 20px;
+        bottom: 20px;
+        height: 20px;
+    }
+}
+object {
+    height: 40px;
+    position: absolute;
+    left: -10%;
+    bottom: -10%;
+    animation: move-sad-cloud 1.5s forwards;
 }
