@@ -17,5 +17,6 @@
     <ProjectReference Include="..\UI_No_Internet\UI_No_Internet.csproj" />
     <ProjectReference Include="..\UI_Product_Logo\UI_Product_Logo.csproj" />
     <ProjectReference Include="..\UI_Progress\UI_Progress.csproj" />
+    <ProjectReference Include="..\UnitIdentification\UnitIdentification.csproj" />
   </ItemGroup>
 </Project>

@@ -13,8 +13,9 @@ public static class MauiProgram
         builder.Services.AddScoped<PingPong.Engine>();
         builder.Services.AddScoped<UnitIdentification.IStorage, MAUI_UnitIdentification.Storage>();
         builder.Services.AddScoped(x => new Product.Infomation { Name = Product.infomation.Name.OBJECTSOCIAL, Software = Product.infomation.Software.Application });
-		#if DEBUG
-		builder.Services.AddBlazorWebViewDeveloperTools();
+        builder.Services.AddScoped<UnitIdentification.Engine>();
+#if DEBUG
+        builder.Services.AddBlazorWebViewDeveloperTools();
 		#endif
 		return builder.Build();
 	}
