@@ -6,7 +6,7 @@ public class Infomation : Unit.IInfomation
 	public string ISO639_1 => System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
 	public Network Network { get; private set; } = Network.Online;
 
-	public unit.infomation.Type Type { get; private set; } = unit.infomation.Type.Unknown;
+	public StandardInternal.unit.infomation.Type Type { get; private set; } = StandardInternal.unit.infomation.Type.Unknown;
 	[JSInvokable]
 	public void Online() {
 		this.Network = Network.Online;
@@ -24,17 +24,17 @@ public class Infomation : Unit.IInfomation
 		JSObject = await jSRuntime.InvokeAsync<IJSObjectReference>("import", "/_content/Website_Unit/Infomation.js");
 		var UA = await JSObject.InvokeAsync<string>("UserAgent");
 		if (UA.ToLower().Contains(" firefox/"))
-			Type = unit.infomation.Type.Firefox;
+			Type = StandardInternal.unit.infomation.Type.Firefox;
 		else if (UA.ToLower().Contains(" opr/"))
-			Type = unit.infomation.Type.Oprea;
+			Type = StandardInternal.unit.infomation.Type.Oprea;
 		else if (UA.ToLower().Contains(" edg/"))
-			Type = unit.infomation.Type.Edge;
+			Type = StandardInternal.unit.infomation.Type.Edge;
 		else if (UA.ToLower().Contains(" chrome/"))
-			Type = unit.infomation.Type.Chrome;
+			Type = StandardInternal.unit.infomation.Type.Chrome;
 		else if (UA.ToLower().Contains(" safari/"))
-			Type = unit.infomation.Type.Safari;
+			Type = StandardInternal.unit.infomation.Type.Safari;
 		else
-			Type = unit.infomation.Type.Unknown;
+			Type = StandardInternal.unit.infomation.Type.Unknown;
 		if (await JSObject.InvokeAsync<bool>("Network", this.DotNetObjectRef = DotNetObjectReference.Create(this)))
 			this.Online();
 		else

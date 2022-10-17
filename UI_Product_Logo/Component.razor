@@ -1,4 +1,4 @@
-﻿<object data="/_content/UI_Product_Logo/@(PI.Name is Product.infomation.Name.ForwardOBJECTSOCIAL or Product.infomation.Name.OBJECTSOCIAL?"OBJECTSOCIAL":"Claims").svg" class="logo" data-pi-software=@PI.Software data-progress=@PM.Status.ToString() />
+﻿<object data="/_content/UI_Product_Logo/@(PI.Name is StandardInternal.product.infomation.Name.ForwardOBJECTSOCIAL or StandardInternal.product.infomation.Name.OBJECTSOCIAL?"OBJECTSOCIAL":"Claims").svg" class="logo" data-pi-software=@PI.Software data-progress=@PM.Status.ToString() />
 @code{
     protected override Task OnInitializedAsync()
     {

@@ -8,6 +8,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.10" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\PongPingUnits\PongPingUnits.csproj" />
     <ProjectReference Include="..\..\PongPing\PongPing.csproj" />
     <ProjectReference Include="..\..\ServerStorages\ServerStorages.csproj" />
     <ProjectReference Include="..\..\WebsiteBehind\WebsiteBehind.csproj" />

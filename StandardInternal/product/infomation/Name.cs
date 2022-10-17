@@ -1,4 +1,4 @@
-﻿namespace Product.infomation;
+﻿namespace StandardInternal.product.infomation;
 public enum Name
 {
     ForwardOBJECTSOCIAL=0,

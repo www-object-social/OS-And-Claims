@@ -6,7 +6,7 @@ public class Storage : UnitIdentification.IStorage
     private readonly HttpClient HttpClient;
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
     private string Domain => PI.Name switch {
-        Product.infomation.Name.ForwardOBJECTSOCIAL => "¯\\_(ツ)_/¯", 
+        StandardInternal.product.infomation.Name.ForwardOBJECTSOCIAL => "¯\\_(ツ)_/¯", 
         _=> HttpClient.BaseAddress.Host.IndexOf("localhost") !=-1? $"{HttpClient.BaseAddress.Host}:{HttpClient.BaseAddress.Port}": HttpClient.BaseAddress.Host 
     };
 #pragma warning restore CS8602 // Dereference of a possibly null reference.

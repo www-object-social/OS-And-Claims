@@ -1,8 +1,8 @@
 ﻿@if (PI.Software is not Product.infomation.Software.Browser) return;
 <div class="ui-application" data-progress=@PM.Status.ToString()>
-    <a target="_blank" href="@(PI.Name is Product.infomation.Name.ForwardOBJECTSOCIAL or Product.infomation.Name.OBJECTSOCIAL?"https://somestore_objectsocial":"https://somestore_claism")"><object data="/_content/UI_ApplicationSupport/google-play-store.svg" class="google-play-store" /></a>
-    <a target="_blank" href="@(PI.Name is Product.infomation.Name.ForwardOBJECTSOCIAL or Product.infomation.Name.OBJECTSOCIAL?"https://somestore_objectsocial":"https://somestore_claism")"><object data="/_content/UI_ApplicationSupport/appstore.svg" class="appstore" /></a>
-    <a target="_blank" href="@(PI.Name is Product.infomation.Name.ForwardOBJECTSOCIAL or Product.infomation.Name.OBJECTSOCIAL?"https://somestore_objectsocial":"https://somestore_claism")"><object data="/_content/UI_ApplicationSupport/microsoft-store.svg" class="microsoft-store" /></a>
+    <a target="_blank" href="@(PI.Name is StandardInternal.product.infomation.Name.ForwardOBJECTSOCIAL or StandardInternal.product.infomation.Name.OBJECTSOCIAL?"https://somestore_objectsocial":"https://somestore_claism")"><object data="/_content/UI_ApplicationSupport/google-play-store.svg" class="google-play-store" /></a>
+    <a target="_blank" href="@(PI.Name is StandardInternal.product.infomation.Name.ForwardOBJECTSOCIAL or StandardInternal.product.infomation.Name.OBJECTSOCIAL?"https://somestore_objectsocial":"https://somestore_claism")"><object data="/_content/UI_ApplicationSupport/appstore.svg" class="appstore" /></a>
+    <a target="_blank" href="@(PI.Name is StandardInternal.product.infomation.Name.ForwardOBJECTSOCIAL or StandardInternal.product.infomation.Name.OBJECTSOCIAL?"https://somestore_objectsocial":"https://somestore_claism")"><object data="/_content/UI_ApplicationSupport/microsoft-store.svg" class="microsoft-store" /></a>
 </div>
 @code{
     protected override Task OnInitializedAsync()

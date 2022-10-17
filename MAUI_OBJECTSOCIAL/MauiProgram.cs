@@ -12,7 +12,7 @@ public static class MauiProgram
         builder.Services.AddScoped<Progress.Manager>();
         builder.Services.AddScoped<PingPong.Engine>();
         builder.Services.AddScoped<UnitIdentification.IStorage, MAUI_UnitIdentification.Storage>();
-        builder.Services.AddScoped(x => new Product.Infomation { Name = Product.infomation.Name.OBJECTSOCIAL, Software = Product.infomation.Software.Application });
+        builder.Services.AddScoped(x => new Product.Infomation { Name = StandardInternal.product.infomation.Name.OBJECTSOCIAL, Software = Product.infomation.Software.Application });
         builder.Services.AddScoped<UnitIdentification.Engine>();
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();

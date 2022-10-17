@@ -7,16 +7,14 @@ public class Engine
     private readonly IStorage S;
     public readonly Progress.manager.Task PmT;
     private readonly Unit.IInfomation UI;
-    public Engine(Progress.Manager PM,PingPong.Engine PPE, IStorage S,Unit.IInfomation UI) {
+    private readonly Product.Infomation PI;
+    public Engine(Progress.Manager PM,PingPong.Engine PPE, IStorage S,Unit.IInfomation UI,Product.Infomation PI) {
         this.PPE = PPE;
         this.S = S;
+        this.PI = PI;
         (this.PmT = PM.Register).Install();
         this.PPE.PmT.Change += async () => await PmT_Change();
-        (this.UI = UI).Change += () =>
-        {
-            if (UI.Network is Unit.infomation.Network.Offline)
-                this.PmT.Install();
-        };
+        this.UI = UI;
     }
 
     private async Task PmT_Change()
@@ -27,9 +25,10 @@ public class Engine
             this.PmT.InProcess();
             if (await this.S.Type() is StandardInternal.unitIdentification.storage.Type.None) {
 
+                await this.PPE.Hub.SendAsync("UnitIdentification_Create", this.UI.ISO639_1, this.UI.Type, this.PI.Name);
                 return;
             }
-            await this.PPE.Hub.SendAsync("UnitIdentification_Verify", await this.S.Read(), this.UI.ISO639_1, this.UI.Type);
+            await this.PPE.Hub.SendAsync("UnitIdentification_Verify", await this.S.Read(), this.UI.ISO639_1, this.UI.Type,this.PI.Name);
         }
         else this.PmT.Install();
     }

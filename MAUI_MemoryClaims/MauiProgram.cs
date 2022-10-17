@@ -11,7 +11,7 @@ public static class MauiProgram
         builder.Services.AddScoped<Unit.IInfomation, MAUI_Unit.Infomation>();
         builder.Services.AddScoped<Progress.Manager>();
         builder.Services.AddScoped<PingPong.Engine>();
-        builder.Services.AddScoped(x => new Product.Infomation { Name = Product.infomation.Name.MemoryClaims, Software = Product.infomation.Software.Application });
+        builder.Services.AddScoped(x => new Product.Infomation { Name = StandardInternal.product.infomation.Name.MemoryClaims, Software = Product.infomation.Software.Application });
         builder.Services.AddScoped<UnitIdentification.Engine>();
         builder.Services.AddScoped<UnitIdentification.IStorage, MAUI_UnitIdentification.Storage>();
         #if DEBUG
