@@ -11,15 +11,17 @@ public class Engine
         this.HttpClientFactory = HttpClientFactory;
         (this.PmT = PM.Register).Install(); 
         (this.UI = UI).Change += async () =>await UI_Change();
-        if (this.UI.Network is Unit.infomation.Network.Online)
+        if (this.UI.Network is Unit.infomation.Network.Online&&this.Hub==null)
             _ = this.UI_Change();
     }
     private string[] Domains = new[] { "object.social","memory.claims","bad.claims","good.claims","myos.world", "myos.work", "osmy.world", "osmy.work" };
     private string Domain => this.Domains[new Random().Next(0, Domains.Length - 1)];
-    private HubConnection Hub { get; set; } = null!;
+    public HubConnection Hub { get; set; } = null!;
     private async Task UI_Change()
     {
-        if (this.Hub != null && this.Hub.State is not HubConnectionState.Disconnected) return;
+       
+        if ((this.Hub != null && this.Hub.State is not HubConnectionState.Disconnected)||this.PmT.Status is Progress.manager.Status.InProcess) return;
+        this.PmT.InProcess();
         if (this.UI.Network is Unit.infomation.Network.Online &&(this.Hub == null || this.Hub.State is HubConnectionState.Disconnected)) {
             using var HttpClient = HttpClientFactory.CreateClient();
                 this.PmT.Install();

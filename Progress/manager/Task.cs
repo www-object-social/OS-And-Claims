@@ -23,6 +23,7 @@ public class Task:IDisposable
     public void Done() => Status = Status.Done;
     public void Download() => Status = Status.Download;
     public void Cancel() => Status = Status.Download;
+    public void InProcess() => Status = Status.InProcess;
     public void Dispose()
     {
         this.Done();
