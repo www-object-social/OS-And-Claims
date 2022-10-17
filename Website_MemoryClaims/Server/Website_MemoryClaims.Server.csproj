@@ -8,9 +8,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.10" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\PongPingUnits\PongPingUnits.csproj" />
     <ProjectReference Include="..\..\PongPing\PongPing.csproj" />
     <ProjectReference Include="..\..\ServerStorages\ServerStorages.csproj" />
+    <ProjectReference Include="..\..\ServerUnitIdentifications\ServerUnitIdentifications.csproj" />
     <ProjectReference Include="..\..\WebsiteBehind\WebsiteBehind.csproj" />
     <ProjectReference Include="..\Client\Website_MemoryClaims.Client.csproj" />
   </ItemGroup>
