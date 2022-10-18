@@ -15,6 +15,7 @@ builder.Services.AddSession(x => {
     x.Cookie.HttpOnly = true;
     x.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
+builder.Services.AddHealthChecks();
 builder.Services.AddScoped<PongPing.IUnitIdentifications, ServerUnitIdentifications.Engine>();
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
@@ -22,6 +23,7 @@ if (app.Environment.IsDevelopment())
 else
     app.UseHsts();
 app.UseSession();
+app.MapHealthChecks("/arr_health");
 app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
