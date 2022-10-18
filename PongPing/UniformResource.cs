@@ -10,8 +10,8 @@ namespace PongPing
     {
 
         private List<Identifier> Identifiers => new() {
-            new("win-9ndprc00ff9.object.social",6000,this.DbContextFactory),
-            new("win-9ndprc00ff9.memory.claims",6000,this.DbContextFactory)
+            new("win-9ndprc00ff9.object.social",50000,this.DbContextFactory),
+            new("win-9ndprc00ff9.memory.claims",50000,this.DbContextFactory)
         };
         [Route("pongping/uniformresource/identifier/single")]
         [HttpGet]

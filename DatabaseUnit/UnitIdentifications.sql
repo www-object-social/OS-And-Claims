@@ -1,0 +1,4 @@
+﻿CREATE TABLE [dbo].[UnitIdentifications]
+(
+	[ID] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY
+)
