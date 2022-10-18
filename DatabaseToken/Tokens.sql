@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Tokens]
+(
+	[ID] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY , 
+    [Created] DATETIME NOT NULL,
+    [AutomaticDeletion] DATETIME NOT NULL , 
+)

@@ -15,6 +15,7 @@ builder.Services.AddSession(x => {
     x.Cookie.HttpOnly = true;
     x.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
+builder.Services.AddHealthChecks();
 builder.Services.AddScoped<PongPing.IUnitIdentifications, ServerUnitIdentifications.Engine>();
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
@@ -28,6 +29,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.MapRazorPages();
 app.MapControllers();
+app.MapHealthChecks("/arr_health");
 app.UseCors("corsapp");
 app.MapHub<PongPing.Services>("/PongPing.Services");
 app.MapFallbackToFile("index.html");

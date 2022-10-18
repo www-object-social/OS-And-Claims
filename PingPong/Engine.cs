@@ -23,10 +23,13 @@ public class Engine
         if ((this.Hub != null && this.Hub.State is not HubConnectionState.Disconnected)||this.PmT.Status is Progress.manager.Status.InProcess) return;
         this.PmT.InProcess();
         if (this.UI.Network is Unit.infomation.Network.Online &&(this.Hub == null || this.Hub.State is HubConnectionState.Disconnected)) {
-            using var HttpClient = HttpClientFactory.CreateClient();
             this.PmT.Install();
-            //  this.Hub = new HubConnectionBuilder().WithUrl($"https://{await HttpClient.GetStringAsync($"https://{Domain}/pongping/uniformresource/identifier/single")}/PongPing.Services").WithAutomaticReconnect().Build();
+#if DEBUG
             this.Hub = new HubConnectionBuilder().WithUrl($"https://localhost:7263/PongPing.Services").WithAutomaticReconnect().Build();
+#else
+            using var HttpClient = HttpClientFactory.CreateClient();
+            this.Hub = new HubConnectionBuilder().WithUrl($"https://{await HttpClient.GetStringAsync($"https://{Domain}/pongping/uniformresource/identifier/single")}/PongPing.Services").WithAutomaticReconnect().Build();  
+#endif
             this.Hub.On<string>("Console", Console.WriteLine);
             this.Hub.Closed += Hub_Closed;
             await this.Hub.StartAsync();
