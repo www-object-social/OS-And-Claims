@@ -16,19 +16,63 @@ public class Engine
         this.PPE.PmT.Change += async () => await PmT_Change();
         this.UI = UI;
     }
+    private Action ChangeAction = null!;
+    public event Action Change {
+        add => ChangeAction += value;
+#pragma warning disable CS8601 // Possible null reference assignment.
+        remove => ChangeAction -= value;
+#pragma warning restore CS8601 // Possible null reference assignment.
+    }
+    private string _ISO639_1 = "EN";
+    public string ISO639_1 {
+        get => _ISO639_1;
+        private set {
+            if(_ISO639_1==value) return;
+            _ISO639_1 = value;
+            this.ChangeAction?.Invoke();
+        }
+    }
+    private bool _AnyUser = false;
+    public bool AnyUser {
+        get => _AnyUser;
+        set { 
+            if(_AnyUser==value) return;
+            _AnyUser = value;
+            this.ChangeAction?.Invoke();
+        }
+    }
+    public async Task Update() => await this.PPE.Hub.InvokeAsync("UI_V", await this.S.Read(), this.UI.ISO639_1, this.UI.Type, this.PI.Name, this.UI.BaseUtcOffsetTotalMinutes);
+    private bool IsUpdateRuning = false;
+    private async Task TimeUpdate() {
+        if (this.PmT.Status is Progress.manager.Status.Done)
+        {
+            await Task.Delay(TimeSpan.FromMinutes(7));
+            await Update();
+        }
+        else IsUpdateRuning = false;
+    }
     private async Task PmT_Change()
     {
-    
         if (this.PmT.Status is Progress.manager.Status.InProcess) return;
         if (PPE.PmT.Status is Progress.manager.Status.Done)
         {
             this.PmT.InProcess();
-            Console.WriteLine(this.PPE.Hub.State.ToString());
-            
+            this.PPE.Hub.On<string, bool, string>("UI_S", async (token, anyuser, iSO639_1) => {
+                await S.Save(token, anyuser ? StandardInternal.unitIdentification.storage.Type.Local : StandardInternal.unitIdentification.storage.Type.Temporarily);
+                this.ISO639_1 = iSO639_1;
+                this.AnyUser = anyuser;
+                if(this.PmT.Status is not Progress.manager.Status.Done)
+                this.PmT.Done();
+                if (this.IsUpdateRuning) {
+                    this.IsUpdateRuning = true;
+                    await TimeUpdate();
+                }
+            });
+
             if (await this.S.Type() is StandardInternal.unitIdentification.storage.Type.None)
-                await this.PPE.Hub.InvokeAsync("UI_C", this.UI.ISO639_1, this.UI.Type, this.PI.Name);
-            else 
-                await this.PPE.Hub.InvokeAsync("Ui_V", await this.S.Read(), this.UI.ISO639_1, this.UI.Type,this.PI.Name);
+                await this.PPE.Hub.InvokeAsync("UI_C", this.UI.ISO639_1, this.UI.Type, this.PI.Name, this.UI.BaseUtcOffsetTotalMinutes);
+            else
+                await Update();
         }
         else this.PmT.Install();
     }

@@ -8,6 +8,7 @@ namespace ServerStorages
         public Token()
         {
             TokenSecurities = new HashSet<TokenSecurity>();
+            UnitIdentifications = new HashSet<UnitIdentification>();
         }
 
         public Guid Id { get; set; }
@@ -15,5 +16,6 @@ namespace ServerStorages
         public DateTime AutomaticDeletion { get; set; }
 
         public virtual ICollection<TokenSecurity> TokenSecurities { get; set; }
+        public virtual ICollection<UnitIdentification> UnitIdentifications { get; set; }
     }
 }

@@ -19,7 +19,11 @@ public class Infomation : Unit.IInfomation
 	}
 	public Infomation(IJSRuntime jSRuntime) => _ = this.Construter(jSRuntime);
 	private IJSObjectReference JSObject { get; set; } = null!;
-	private DotNetObjectReference<Infomation> DotNetObjectRef = null!;
+
+	public int BaseUtcOffsetTotalMinutes => (int)TimeZoneInfo.Local.BaseUtcOffset.TotalMinutes;
+
+
+    private DotNetObjectReference<Infomation> DotNetObjectRef = null!;
 	private async Task Construter(IJSRuntime jSRuntime) {
 		JSObject = await jSRuntime.InvokeAsync<IJSObjectReference>("import", "/_content/Website_Unit/Infomation.js");
 		var UA = await JSObject.InvokeAsync<string>("UserAgent");
@@ -39,6 +43,7 @@ public class Infomation : Unit.IInfomation
 			this.Online();
 		else
 			this.Offline();
+
 	}
 	private Action ChangeAction = null!;
 	public event Action Change

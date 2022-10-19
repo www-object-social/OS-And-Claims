@@ -6,8 +6,10 @@ public class Engine
     private readonly Unit.IInfomation UI;
     public readonly Progress.manager.Task PmT;
     private readonly IHttpClientFactory HttpClientFactory;
-    public Engine(IHttpClientFactory HttpClientFactory, Product.Infomation PI, Unit.IInfomation UI, Progress.Manager PM) {
+    private readonly HttpClient HttpClient;
+    public Engine(IHttpClientFactory HttpClientFactory, Product.Infomation PI, Unit.IInfomation UI, Progress.Manager PM,HttpClient HttpClient) {
         this.PI = PI;
+        this.HttpClient = HttpClient;
         this.HttpClientFactory = HttpClientFactory;
         (this.PmT = PM.Register).Install(); 
         (this.UI = UI).Change += async () =>await UI_Change();
@@ -24,12 +26,15 @@ public class Engine
         this.PmT.InProcess();
         if (this.UI.Network is Unit.infomation.Network.Online &&(this.Hub == null || this.Hub.State is HubConnectionState.Disconnected)) {
             this.PmT.Install();
-#if DEBUG
-            this.Hub = new HubConnectionBuilder().WithUrl($"https://localhost:7263/PongPing.Services").WithAutomaticReconnect().Build();
-#else
-            using var HttpClient = HttpClientFactory.CreateClient();
-            this.Hub = new HubConnectionBuilder().WithUrl($"https://{await HttpClient.GetStringAsync($"https://{Domain}/pongping/uniformresource/identifier/single")}/PongPing.Services").WithAutomaticReconnect().Build();  
-#endif
+            if (PI.ISDeveloper)
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                this.Hub = new HubConnectionBuilder().WithUrl($"https://{HttpClient.BaseAddress.Host}:{HttpClient.BaseAddress.Port}/PongPing.Services").WithAutomaticReconnect().Build();
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+            else {
+                using var HttpClient = HttpClientFactory.CreateClient();
+                this.Hub = new HubConnectionBuilder().WithUrl($"https://{await HttpClient.GetStringAsync($"https://{Domain}/pongping/uniformresource/identifier/single")}/PongPing.Services").WithAutomaticReconnect().Build();
+            }
+
             this.Hub.On<string>("Console", Console.WriteLine);
             this.Hub.Closed += Hub_Closed;
             await this.Hub.StartAsync();

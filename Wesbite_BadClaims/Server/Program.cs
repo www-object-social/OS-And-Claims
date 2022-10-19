@@ -17,6 +17,7 @@ builder.Services.AddSession(x => {
     x.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 builder.Services.AddScoped<PongPing.IUnitIdentifications, ServerUnitIdentifications.Engine>();
+builder.Services.AddScoped<ServerToken.Engine>();
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
     app.UseWebAssemblyDebugging();

@@ -32,7 +32,7 @@ public class Engine
         cs.FlushFinalBlock();
         return Convert.ToBase64String(ms.ToArray());
     }
-    private async Task<(HttpStatusCode StatusCode, Guid ID, Guid Code, string Message)> Decrypt(string Token)
+    private async Task<(HttpStatusCode StatusCode, Guid ID, Guid Code)> Decrypt(string Token)
     {
         foreach (var Security in await GetSecurities())
             try
@@ -48,12 +48,12 @@ public class Engine
                 cs.FlushFinalBlock();
                 var Content = Encoding.UTF8.GetString(ms.ToArray());
                 if (Content.Contains('@') && Guid.TryParse(Content.Split("@")[0], out ID) && Guid.TryParse(Content.Split("@")[1], out Code))
-                    return (HttpStatusCode.OK, ID, Code, Content.Split("@")[2]);
+                    return (HttpStatusCode.OK, ID, Code);
             }
             catch (Exception)
             {
             }
-        return (HttpStatusCode.Conflict, Guid.Empty, Guid.Empty, null!);
+        return (HttpStatusCode.Conflict, Guid.Empty, Guid.Empty);
     }
     public async Task<(Guid ID, string Token)> Create()
     {

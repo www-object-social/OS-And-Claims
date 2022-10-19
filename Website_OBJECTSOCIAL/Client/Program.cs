@@ -8,7 +8,14 @@ builder.Services.AddScoped<Unit.IInfomation, Website_Unit.Infomation>();
 builder.Services.AddScoped<Progress.Manager>();
 builder.Services.AddScoped<PingPong.Engine>();
 builder.Services.AddHttpClient();
-builder.Services.AddScoped(x => new Product.Infomation { Name = StandardInternal.product.infomation.Name.OBJECTSOCIAL, Software = Product.infomation.Software.Browser });
+builder.Services.AddScoped(x => new Product.Infomation { Name = StandardInternal.product.infomation.Name.OBJECTSOCIAL, Software = Product.infomation.Software.Browser,
+    ISDeveloper =
+#if DEBUG
+    true
+#else
+    false
+#endif
+});
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddScoped<UnitIdentification.IStorage, Website_UnitIdentification.Storage>();
 builder.Services.AddScoped<UnitIdentification.Engine>();

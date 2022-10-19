@@ -20,6 +20,9 @@ namespace ServerStorages
         public virtual DbSet<Token> Tokens { get; set; } = null!;
         public virtual DbSet<TokenSecurity> TokenSecurities { get; set; } = null!;
         public virtual DbSet<TokensSecurity> TokensSecurities { get; set; } = null!;
+        public virtual DbSet<UnitConnection> UnitConnections { get; set; } = null!;
+        public virtual DbSet<UnitIdentification> UnitIdentifications { get; set; } = null!;
+        public virtual DbSet<UnitUser> UnitUsers { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -82,6 +85,57 @@ namespace ServerStorages
                 entity.Property(e => e.AutomaticDeletion).HasColumnType("datetime");
 
                 entity.Property(e => e.Created).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<UnitConnection>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
+
+                entity.Property(e => e.UnitIdentificationId).HasColumnName("UnitIdentificationID");
+
+                entity.HasOne(d => d.UnitIdentification)
+                    .WithMany(p => p.UnitConnections)
+                    .HasForeignKey(d => d.UnitIdentificationId)
+                    .HasConstraintName("FK_UnitConnections_ToUnitIdentifications");
+            });
+
+            modelBuilder.Entity<UnitIdentification>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
+
+                entity.Property(e => e.AutomaticDeletion).HasColumnType("datetime");
+
+                entity.Property(e => e.Created).HasColumnType("datetime");
+
+                entity.Property(e => e.Iso6391)
+                    .HasMaxLength(2)
+                    .HasColumnName("ISO639_1");
+
+                entity.Property(e => e.TokenId).HasColumnName("TokenID");
+
+                entity.HasOne(d => d.Token)
+                    .WithMany(p => p.UnitIdentifications)
+                    .HasForeignKey(d => d.TokenId)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("FK_UnitIdentifications_ToToken");
+            });
+
+            modelBuilder.Entity<UnitUser>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
+
+                entity.Property(e => e.UnitIdentificationId).HasColumnName("UnitIdentificationID");
+
+                entity.HasOne(d => d.UnitIdentification)
+                    .WithMany(p => p.UnitUsers)
+                    .HasForeignKey(d => d.UnitIdentificationId)
+                    .HasConstraintName("FK_UnitUsers_ToUnitIdentifications");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -6,5 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\PongPing\PongPing.csproj" />
+    <ProjectReference Include="..\Product\Product.csproj" />
+    <ProjectReference Include="..\ServerToken\ServerToken.csproj" />
   </ItemGroup>
 </Project>

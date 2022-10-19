@@ -17,6 +17,7 @@ public class Infomation:Unit.IInfomation
     StandardInternal.unit.infomation.Type.Unknown;
     #endif
     private Action ChangeAction = null!;
+    public int BaseUtcOffsetTotalMinutes => (int)TimeZoneInfo.Local.BaseUtcOffset.TotalMinutes;
     public event Action Change
     {
         add => ChangeAction += value;
