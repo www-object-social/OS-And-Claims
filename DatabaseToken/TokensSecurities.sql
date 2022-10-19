@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[TokensSecurities]
+(
+	[ID] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY , 
+	[Created] DATETIME NOT NULL , 
+    [Value0] VARBINARY(MAX) NOT NULL, 
+    [Value1] VARBINARY(MAX) NOT NULL, 
+    [AutomaticDeletion] DATETIME NOT NULL , 
+)

@@ -8,7 +8,6 @@ builder.Services.AddScoped(x => new Product.Infomation { Name = StandardInternal
 builder.Services.AddSignalR();
 builder.Services.AddCors(p => p.AddPolicy("corsapp", x => x.WithOrigins("*").AllowAnyMethod().AllowAnyHeader()));
 builder.Services.AddDbContextFactory<ServerStorages.OSAndClaimsContext>(x => x.UseSqlServer(new Func<string>(() => {if (!"database-connection".HaveFile()){"database-connection".WriteFile("Data Source");throw new Exception("Error we have created a file in %ProgramData% called database-connection.os-and-claims in which you can place Data source");}return "database-connection".ReadFile();})()).UseLazyLoadingProxies());
-builder.Services.AddHealthChecks();
 builder.Services.AddSession(x => {
     x.IOTimeout = TimeSpan.FromMinutes(60);
     x.IdleTimeout = TimeSpan.FromMinutes(60);
@@ -16,19 +15,20 @@ builder.Services.AddSession(x => {
     x.Cookie.HttpOnly = true;
     x.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
+builder.Services.AddHealthChecks();
 builder.Services.AddScoped<PongPing.IUnitIdentifications, ServerUnitIdentifications.Engine>();
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
     app.UseWebAssemblyDebugging();
 else
     app.UseHsts();
-app.MapHealthChecks("/arr-health");
 app.UseSession();
 app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 app.UseRouting();
 app.MapRazorPages();
+app.MapHealthChecks("/arr_health");
 app.UseCors("corsapp");
 app.MapHub<PongPing.Services>("/PongPing.Services");
 app.MapControllers();

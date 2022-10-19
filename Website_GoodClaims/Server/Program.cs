@@ -14,6 +14,7 @@ builder.Services.AddSession(x => {
     x.Cookie.HttpOnly = true;
     x.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
+builder.Services.AddHealthChecks();
 builder.Services.AddDbContextFactory<ServerStorages.OSAndClaimsContext>(x => x.UseSqlServer(new Func<string>(() => { if (!"database-connection".HaveFile()) { "database-connection".WriteFile("Data Source"); throw new Exception("Error we have created a file in %ProgramData% called database-connection.os-and-claims in which you can place Data source"); } return "database-connection".ReadFile(); })()).UseLazyLoadingProxies());
 builder.Services.AddScoped<PongPing.IUnitIdentifications, ServerUnitIdentifications.Engine>();
 var app = builder.Build();
@@ -26,6 +27,7 @@ app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 app.UseRouting();
+app.MapHealthChecks("/arr_health");
 app.MapRazorPages();
 app.UseCors("corsapp");
 app.MapHub<PongPing.Services>("/PongPing.Services");
