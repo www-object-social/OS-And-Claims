@@ -5,15 +5,41 @@
     <audio controls autoplay style="visibility:hidden">
         <source src="_content/SharedLayout/startup.mp3" type="audio/mpeg">
     </audio>
-    @switch (this.UIE.ISO639_1) { 
-        case "DA":
-            <div class="text open_sansbold">Hukommelse som din historiebog</div>
+    @switch (this.PI.Name) { 
+        case StandardInternal.product.infomation.Name.BadClaims:
+            @switch (this.UIE.ISO639_1)
+            {
+                case "DA":
+                    <div class="text open_sansbold">Dårlig minde fra fortiden</div>
+                    break;
+                default:
+                    <div class="text open_sansbold">Bad memory from the past</div>
+                    break;
+            }
+            break;
+        case StandardInternal.product.infomation.Name.GoodClaims:
+            @switch (this.UIE.ISO639_1)
+            {
+                case "DA":
+                    <div class="text open_sansbold">God minde fra fortiden</div>
+                    break;
+                default:
+                    <div class="text open_sansbold">Good memory from the past</div>
+                    break;
+            }
             break;
         default:
-            <div class="text open_sansbold">Memory like your story book</div>
+            @switch (this.UIE.ISO639_1)
+            {
+                case "DA":
+                    <div class="text open_sansbold">Minde fra dig</div>
+                    break;
+                default:
+                    <div class="text open_sansbold">Memory by you</div>
+                    break;
+            }
             break;
     }
-    <div class="text"></div>
     <div class="emoji">@UseEmoji</div>
 }else{
     <div class="text">connection together</div>
