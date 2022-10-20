@@ -3,7 +3,17 @@
 @code{
     protected override Task OnInitializedAsync()
     {
-        this.UI.Change += () => InvokeAsync(this.StateHasChanged);
+        var PmT = PM.Register;
+        this.UI.Change += () => {
+            if (this.UI.Network is Unit.infomation.Network.Offline)
+            {
+                PmT.Install();
+            }
+            else {
+                PmT.Done();
+            }
+            InvokeAsync(this.StateHasChanged);
+        };
         return base.OnInitializedAsync();
     }
 }

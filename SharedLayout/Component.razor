@@ -1,12 +1,7 @@
 ﻿@inherits LayoutComponentBase
 @inject UnitIdentification.Engine UIE
-@inject Product.Infomation PI
 @Body
-@if (PI.Name is not StandardInternal.product.infomation.Name.ForwardOBJECTSOCIAL or StandardInternal.product.infomation.Name.OBJECTSOCIAL) {
-    <audio controls autoplay style="visibility:hidden">
-        <source src="_content/SharedLayout/startup.mp3" type="audio/mpeg">
-    </audio>
-}
+<UI_StoryBeginsHere.Component/>
 <UI_Product_Logo.Component/>
 <UI_BrowserSupport.Component/>
 <UI_Progress.Component />
@@ -16,7 +11,6 @@
     protected override Task OnInitializedAsync()
     {
         PM.Change+=()=>InvokeAsync(this.StateHasChanged);
-
         return base.OnInitializedAsync();
     }
 }

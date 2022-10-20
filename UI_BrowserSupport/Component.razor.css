@@ -12,18 +12,18 @@
 }
 @keyframes task-1 {
     0% {
-        opacity: 0.4
+        opacity: 0.8;
     }
     50% {
         opacity: 1;
     }
     100% {
-        opacity: 0.4
+        opacity: 0.8;
     }
 }
 *,a {cursor:pointer;}
 img[data-is="false"]:hover {
-    animation: task-0 1s forwards,task-1 1s forwards;
+    animation: task-0 1s forwards;
 }
 img[data-is="true"]:hover {
     animation: task-0 1s forwards;

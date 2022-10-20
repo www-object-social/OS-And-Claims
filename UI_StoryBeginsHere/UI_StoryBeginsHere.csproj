@@ -16,7 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <ProjectReference Include="..\Product\Product.csproj" />
+    <ProjectReference Include="..\Progress\Progress.csproj" />
+    <ProjectReference Include="..\UnitIdentification\UnitIdentification.csproj" />
   </ItemGroup>
 
 </Project>

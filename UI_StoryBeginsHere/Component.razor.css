@@ -1,0 +1,14 @@
+﻿.emoji {
+    width:100%;
+   font-size:30px;
+   position:absolute;
+   bottom:270px;
+   text-align:center;
+}
+.text {
+color:#fff;
+text-align:center;
+position:absolute;
+width:100%;
+bottom:310px;
+}

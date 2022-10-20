@@ -30,8 +30,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{657F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedLayout", "SharedLayout\SharedLayout.csproj", "{72204224-B103-4BD5-9AFC-9C1E005A5187}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website_Favicon", "Website_Favicon\Website_Favicon.csproj", "{B238208A-24B0-4959-A91E-8537B42D4A34}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI_Product_Logo", "UI_Product_Logo\UI_Product_Logo.csproj", "{60D6C073-6451-4736-9474-A2B6090821E1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product", "Product\Product.csproj", "{9368D941-CA00-498F-8034-7D5ACA7C27D7}"
@@ -68,27 +66,33 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DatabasePongPingUniformReso
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database tabels", "Database tabels", "{C2DC2FA4-E297-4109-B774-6972B2F332B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgramData", "ProgramData\ProgramData.csproj", "{B7A7971E-C292-4522-9BCA-FBC84544F92E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgramData", "ProgramData\ProgramData.csproj", "{B7A7971E-C292-4522-9BCA-FBC84544F92E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Standard internal", "Standard internal", "{95F6DD73-D6BD-48D2-874E-3C1F525133DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StandardInternal", "StandardInternal\StandardInternal.csproj", "{F43841CF-B5B6-4A71-826A-79C0B29B6968}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StandardInternal", "StandardInternal\StandardInternal.csproj", "{F43841CF-B5B6-4A71-826A-79C0B29B6968}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitIdentification", "UnitIdentification\UnitIdentification.csproj", "{B0CA7334-D45A-429F-A023-47F3244AD77E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitIdentification", "UnitIdentification\UnitIdentification.csproj", "{B0CA7334-D45A-429F-A023-47F3244AD77E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAUI_UnitIdentification", "MAUI_UnitIdentification\MAUI_UnitIdentification.csproj", "{EA6C26CB-512D-4057-A903-1B6DE259A9B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MAUI_UnitIdentification", "MAUI_UnitIdentification\MAUI_UnitIdentification.csproj", "{EA6C26CB-512D-4057-A903-1B6DE259A9B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website_UnitIdentification", "Website_UnitIdentification\Website_UnitIdentification.csproj", "{7F479918-1080-4611-B87F-0E175DCF9D7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website_UnitIdentification", "Website_UnitIdentification\Website_UnitIdentification.csproj", "{7F479918-1080-4611-B87F-0E175DCF9D7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebsiteBehind", "WebsiteBehind\WebsiteBehind.csproj", "{E16D9CBA-EADB-4238-836B-E1E8D3D1E060}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebsiteBehind", "WebsiteBehind\WebsiteBehind.csproj", "{E16D9CBA-EADB-4238-836B-E1E8D3D1E060}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerUnitIdentifications", "ServerUnitIdentifications\ServerUnitIdentifications.csproj", "{C74CA074-36EF-4155-A038-0067FF3E8071}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerUnitIdentifications", "ServerUnitIdentifications\ServerUnitIdentifications.csproj", "{C74CA074-36EF-4155-A038-0067FF3E8071}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DatabaseUnit", "DatabaseUnit\DatabaseUnit.sqlproj", "{38198600-C67C-4ACF-999D-58A688661F7D}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DatabaseToken", "DatabaseToken\DatabaseToken.sqlproj", "{437C3D9E-A734-454C-A4C8-06C2E8D3B98F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerToken", "ServerToken\ServerToken.csproj", "{ABB68132-6F1D-4082-BEE3-C90413B0777D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerToken", "ServerToken\ServerToken.csproj", "{ABB68132-6F1D-4082-BEE3-C90413B0777D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website_Favicon", "Website_Favicon\Website_Favicon.csproj", "{B9F01D8C-2470-4DE9-B4CD-332C69E95E20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI_StoryBeginsHere", "UI_StoryBeginsHere\UI_StoryBeginsHere.csproj", "{0F2AC098-54E3-4C64-89B6-397B6D0C1493}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website_FontFamilies", "Website_FontFamilies\Website_FontFamilies.csproj", "{079ECC7C-79AA-41E8-864F-FA146A5D580F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -152,10 +156,6 @@ Global
 		{72204224-B103-4BD5-9AFC-9C1E005A5187}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72204224-B103-4BD5-9AFC-9C1E005A5187}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72204224-B103-4BD5-9AFC-9C1E005A5187}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B238208A-24B0-4959-A91E-8537B42D4A34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B238208A-24B0-4959-A91E-8537B42D4A34}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B238208A-24B0-4959-A91E-8537B42D4A34}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B238208A-24B0-4959-A91E-8537B42D4A34}.Release|Any CPU.Build.0 = Release|Any CPU
 		{60D6C073-6451-4736-9474-A2B6090821E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{60D6C073-6451-4736-9474-A2B6090821E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60D6C073-6451-4736-9474-A2B6090821E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -258,6 +258,18 @@ Global
 		{ABB68132-6F1D-4082-BEE3-C90413B0777D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABB68132-6F1D-4082-BEE3-C90413B0777D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABB68132-6F1D-4082-BEE3-C90413B0777D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9F01D8C-2470-4DE9-B4CD-332C69E95E20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9F01D8C-2470-4DE9-B4CD-332C69E95E20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9F01D8C-2470-4DE9-B4CD-332C69E95E20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9F01D8C-2470-4DE9-B4CD-332C69E95E20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F2AC098-54E3-4C64-89B6-397B6D0C1493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F2AC098-54E3-4C64-89B6-397B6D0C1493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F2AC098-54E3-4C64-89B6-397B6D0C1493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F2AC098-54E3-4C64-89B6-397B6D0C1493}.Release|Any CPU.Build.0 = Release|Any CPU
+		{079ECC7C-79AA-41E8-864F-FA146A5D580F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{079ECC7C-79AA-41E8-864F-FA146A5D580F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{079ECC7C-79AA-41E8-864F-FA146A5D580F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{079ECC7C-79AA-41E8-864F-FA146A5D580F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -276,7 +288,6 @@ Global
 		{315BE5F5-C132-44B9-90A0-39F2E3A982E1} = {657F29F4-DB1E-4D2B-A2FF-0D1005F06BC4}
 		{A4F113C7-21F9-4421-ADD2-D9A01416307B} = {657F29F4-DB1E-4D2B-A2FF-0D1005F06BC4}
 		{72204224-B103-4BD5-9AFC-9C1E005A5187} = {01ED77AC-CFFA-4293-B5D8-8A87C3578FE1}
-		{B238208A-24B0-4959-A91E-8537B42D4A34} = {01ED77AC-CFFA-4293-B5D8-8A87C3578FE1}
 		{60D6C073-6451-4736-9474-A2B6090821E1} = {01ED77AC-CFFA-4293-B5D8-8A87C3578FE1}
 		{9368D941-CA00-498F-8034-7D5ACA7C27D7} = {21806DFE-A404-45F4-B1EA-B7F191CFBEA2}
 		{2DE2C334-E5B9-40C9-8D25-63F03DDDDFF9} = {01ED77AC-CFFA-4293-B5D8-8A87C3578FE1}
@@ -301,6 +312,9 @@ Global
 		{38198600-C67C-4ACF-999D-58A688661F7D} = {C2DC2FA4-E297-4109-B774-6972B2F332B9}
 		{437C3D9E-A734-454C-A4C8-06C2E8D3B98F} = {C2DC2FA4-E297-4109-B774-6972B2F332B9}
 		{ABB68132-6F1D-4082-BEE3-C90413B0777D} = {A581BE97-4F92-44ED-A163-7E17DE58DE70}
+		{B9F01D8C-2470-4DE9-B4CD-332C69E95E20} = {21806DFE-A404-45F4-B1EA-B7F191CFBEA2}
+		{0F2AC098-54E3-4C64-89B6-397B6D0C1493} = {01ED77AC-CFFA-4293-B5D8-8A87C3578FE1}
+		{079ECC7C-79AA-41E8-864F-FA146A5D580F} = {21806DFE-A404-45F4-B1EA-B7F191CFBEA2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
