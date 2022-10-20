@@ -9,6 +9,7 @@ public class Engine
     private readonly Unit.IInfomation UI;
     private readonly Product.Infomation PI;
     public Engine(Progress.Manager PM,PingPong.Engine PPE, IStorage S,Unit.IInfomation UI,Product.Infomation PI) {
+        _ISO639_1 = PI.ISO639_1s.Any(x => x == UI.ISO639_1.ToUpper()) ? UI.ISO639_1.ToUpper() : "EN";
         this.PPE = PPE;
         this.S = S;
         this.PI = PI;
@@ -23,7 +24,7 @@ public class Engine
         remove => ChangeAction -= value;
 #pragma warning restore CS8601 // Possible null reference assignment.
     }
-    private string _ISO639_1 = "EN";
+    private string _ISO639_1 =null!;
     public string ISO639_1 {
         get => _ISO639_1;
         private set {
