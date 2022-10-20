@@ -7,10 +7,10 @@
     </audio>
     @switch (this.UIE.ISO639_1) { 
         case "DA":
-            <div class="text">Hukommelse som din historiebog</div>
+            <div class="text open_sansbold">Hukommelse som din historiebog</div>
             break;
         default:
-            <div class="text">Memory like your story book</div>
+            <div class="text open_sansbold">Memory like your story book</div>
             break;
     }
     <div class="text"></div>
@@ -23,15 +23,16 @@
     private string[] Emojis = new[] { "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "🥲", "😊", "😇", "🙂", "🙃", "😉", "😌", "😍", "🥰", "😘", "😗", "😙", "😚", "😋", "😛", "😝", "😜", "🤪", "🤨", "🧐", "🤓", "😎", "🥸", "🤩", "🥳", "😏", "😒", "😞", "😔", "😟", "😕", "🙁", "😣", "😖", "😫", "😩", "🥺", "😢", "😭", "😮‍💨", "😤", "😠", "😡", "🤬", "🤯", "😳", "🥵", "🥶", "😱", "😨", "😰", "😥", "😓", "🤗", "🤔", "🤭", "🤫", "🤥", "😶", "😐", "😑", "😬", "🙄", "😯", "😦", "😧", "😮", "😲", "🥱", "😴", "🤤", "😪", "😵", "😵‍💫", "🤐", "🥴", "🤢", "🤮", "🤧", "😷", "🤒", "🤕", "🤑", "🤠", "😈", "👿", "👹", "👺", "🤡", "💩", "👻", "💀", "☠️", "👽", "👾", "🤖", "🎃", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾", "❤️" };
     protected override async Task OnInitializedAsync()
     {
+        PM.Change += () => InvokeAsync(this.StateHasChanged);
         if (PI.Name is StandardInternal.product.infomation.Name.BadClaims or StandardInternal.product.infomation.Name.GoodClaims or StandardInternal.product.infomation.Name.MemoryClaims){
             this.UIE.Change += () => InvokeAsync(this.StateHasChanged);
             var PmT = PM.Register;
             PmT.Install();
-            PM.Change += () => InvokeAsync(this.StateHasChanged);
             var EmjoiTime = 5000 / Emojis.Length;
             for (var i = 0; i < Emojis.Length; i++)
             {
-                UseEmoji = Emojis[i];
+                UseEmoji = Emojis[new Random().Next(0, Emojis.Length - 1)] + Emojis[i] + Emojis[new Random().Next(0, Emojis.Length - 1)];
+               
                 this.StateHasChanged();
                 await Task.Delay(EmjoiTime);
             }
