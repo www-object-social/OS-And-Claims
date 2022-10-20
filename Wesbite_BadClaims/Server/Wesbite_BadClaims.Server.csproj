@@ -12,6 +12,7 @@
     <ProjectReference Include="..\..\Product\Product.csproj" />
     <ProjectReference Include="..\..\ServerStorages\ServerStorages.csproj" />
     <ProjectReference Include="..\..\ServerUnitIdentifications\ServerUnitIdentifications.csproj" />
+    <ProjectReference Include="..\..\WebsiteBehind\WebsiteBehind.csproj" />
     <ProjectReference Include="..\Client\Wesbite_BadClaims.Client.csproj" />
   </ItemGroup>
 </Project>
