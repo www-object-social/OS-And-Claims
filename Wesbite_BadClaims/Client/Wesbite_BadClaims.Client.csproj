@@ -13,6 +13,7 @@
     <ProjectReference Include="..\..\Progress\Progress.csproj" />
     <ProjectReference Include="..\..\SharedLayout\SharedLayout.csproj" />
     <ProjectReference Include="..\..\Website_Favicon\Website_Favicon.csproj" />
+    <ProjectReference Include="..\..\Website_FontFamilies\Website_FontFamilies.csproj" />
     <ProjectReference Include="..\..\Website_UnitIdentification\Website_UnitIdentification.csproj" />
     <ProjectReference Include="..\..\Website_Unit\Website_Unit.csproj" />
   </ItemGroup>

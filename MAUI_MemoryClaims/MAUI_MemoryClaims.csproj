@@ -34,6 +34,7 @@
       <ProjectReference Include="..\Product\Product.csproj" />
       <ProjectReference Include="..\Progress\Progress.csproj" />
       <ProjectReference Include="..\SharedLayout\SharedLayout.csproj" />
+      <ProjectReference Include="..\Website_FontFamilies\Website_FontFamilies.csproj" />
     </ItemGroup>
     <ItemGroup>
       <Content Update="wwwroot\favicon.ico">
