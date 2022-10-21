@@ -1,4 +1,8 @@
-﻿@if (PM.Status is Progress.manager.Status.Done) return;
+﻿@using Microsoft.AspNetCore.Components.Web
+@inject Product.Infomation PI
+@inject Progress.Manager PM
+@inject UnitIdentification.Engine UIE
+@if (PM.Status is Progress.manager.Status.Done) return;
 @if (PI.Name is StandardInternal.product.infomation.Name.BadClaims or StandardInternal.product.infomation.Name.GoodClaims or StandardInternal.product.infomation.Name.MemoryClaims)
 {
     <audio controls autoplay style="visibility:hidden">
@@ -10,10 +14,10 @@
             @switch (this.UIE.ISO639_1)
             {
                 case "DA":
-                    <div class="text open_sansbold">Dårlige minder fra fortiden</div>
+                    <div class="text mullermedium-600">Dårlige minder fra fortiden</div>
                     break;
                 default:
-                    <div class="text open_sansbold">Bad memories from the past</div>
+                    <div class="text mullermedium-600">Bad memories from the past</div>
                     break;
             }
             break;
@@ -21,10 +25,13 @@
             @switch (this.UIE.ISO639_1)
             {
                 case "DA":
-                    <div class="text open_sansbold">Gode minder fra fortiden</div>
+                    <div class="text mullermedium-600">
+                        你好世界 Привіт Світ Hello world
+                      @*  Gode minder fra fortiden*@
+                    </div>
                     break;
                 default:
-                    <div class="text open_sansbold">Good memories from the past</div>
+                    <div class="text mullermedium-600">Good memories from the past</div>
                     break;
             }
             break;
@@ -32,10 +39,10 @@
             @switch (this.UIE.ISO639_1)
             {
                 case "DA":
-                    <div class="text open_sansbold">Historie af dig</div>
+                    <div class="text mullermedium-600">Historie af dig</div>
                     break;
                 default:
-                    <div class="text open_sansbold">Story by you</div>
+                    <div class="text mullermedium-600">Story by you</div>
                     break;
             }
             break;
@@ -69,7 +76,7 @@ else
             UseEmoji = Emojis[new Random().Next(0, Emojis.Length - 1)];
             this.StateHasChanged();
             await Task.Delay(1500);
-            PmT.Done();
+           // PmT.Done();
         }
         await base.OnInitializedAsync();
     }

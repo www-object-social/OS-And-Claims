@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'mullermedium';
+    src: url('fontfabric__mullermedium.woff2') format('woff2'),
+         url('fontfabric__mullermedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.mullermedium-600 {
+    font-family: 'mullermedium', sans-serif;
+    font-weight: 600;
+}
