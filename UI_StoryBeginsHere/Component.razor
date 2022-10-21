@@ -1,19 +1,23 @@
-﻿@if (PM.Status is Progress.manager.Status.Done) return;
+﻿@using Microsoft.AspNetCore.Components.Web
+@inject Product.Infomation PI
+@inject Progress.Manager PM
+@inject UnitIdentification.Engine UIE
+@if (PM.Status is Progress.manager.Status.Done) return;
 @if (PI.Name is StandardInternal.product.infomation.Name.BadClaims or StandardInternal.product.infomation.Name.GoodClaims or StandardInternal.product.infomation.Name.MemoryClaims)
 {
-
     <audio controls autoplay style="visibility:hidden">
         <source src="_content/SharedLayout/startup.mp3" type="audio/mpeg">
     </audio>
-    @switch (this.PI.Name) { 
+    @switch (this.PI.Name)
+    {
         case StandardInternal.product.infomation.Name.BadClaims:
             @switch (this.UIE.ISO639_1)
             {
                 case "DA":
-                    <div class="text open_sansbold">Dårlig minde fra fortiden</div>
+                    <div class="text mullermedium-600">Dårlige minder fra fortiden</div>
                     break;
                 default:
-                    <div class="text open_sansbold">Bad memory from the past</div>
+                    <div class="text mullermedium-600">Bad memories from the past</div>
                     break;
             }
             break;
@@ -21,10 +25,13 @@
             @switch (this.UIE.ISO639_1)
             {
                 case "DA":
-                    <div class="text open_sansbold">God minde fra fortiden</div>
+                    <div class="text mullermedium-600">
+                        你好世界 Привіт Світ Hello world
+                      @*  Gode minder fra fortiden*@
+                    </div>
                     break;
                 default:
-                    <div class="text open_sansbold">Good memory from the past</div>
+                    <div class="text mullermedium-600">Good memories from the past</div>
                     break;
             }
             break;
@@ -32,25 +39,29 @@
             @switch (this.UIE.ISO639_1)
             {
                 case "DA":
-                    <div class="text open_sansbold">Minde fra dig</div>
+                    <div class="text mullermedium-600">Historie af dig</div>
                     break;
                 default:
-                    <div class="text open_sansbold">Memory by you</div>
+                    <div class="text mullermedium-600">Story by you</div>
                     break;
             }
             break;
     }
     <div class="emoji">@UseEmoji</div>
-}else{
+    <PageTitle>@Emojis[new Random().Next(0, Emojis.Length - 1)]Claims</PageTitle>
+}
+else
+{
     <div class="text">connection together</div>
 }
-@code{
+@code {
     private string UseEmoji = "";
     private string[] Emojis = new[] { "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "🥲", "😊", "😇", "🙂", "🙃", "😉", "😌", "😍", "🥰", "😘", "😗", "😙", "😚", "😋", "😛", "😝", "😜", "🤪", "🤨", "🧐", "🤓", "😎", "🥸", "🤩", "🥳", "😏", "😒", "😞", "😔", "😟", "😕", "🙁", "😣", "😖", "😫", "😩", "🥺", "😢", "😭", "😮‍💨", "😤", "😠", "😡", "🤬", "🤯", "😳", "🥵", "🥶", "😱", "😨", "😰", "😥", "😓", "🤗", "🤔", "🤭", "🤫", "🤥", "😶", "😐", "😑", "😬", "🙄", "😯", "😦", "😧", "😮", "😲", "🥱", "😴", "🤤", "😪", "😵", "😵‍💫", "🤐", "🥴", "🤢", "🤮", "🤧", "😷", "🤒", "🤕", "🤑", "🤠", "😈", "👿", "👹", "👺", "🤡", "💩", "👻", "💀", "☠️", "👽", "👾", "🤖", "🎃", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾", "❤️" };
     protected override async Task OnInitializedAsync()
     {
         PM.Change += () => InvokeAsync(this.StateHasChanged);
-        if (PI.Name is StandardInternal.product.infomation.Name.BadClaims or StandardInternal.product.infomation.Name.GoodClaims or StandardInternal.product.infomation.Name.MemoryClaims){
+        if (PI.Name is StandardInternal.product.infomation.Name.BadClaims or StandardInternal.product.infomation.Name.GoodClaims or StandardInternal.product.infomation.Name.MemoryClaims)
+        {
             this.UIE.Change += () => InvokeAsync(this.StateHasChanged);
             var PmT = PM.Register;
             PmT.Install();
@@ -65,7 +76,7 @@
             UseEmoji = Emojis[new Random().Next(0, Emojis.Length - 1)];
             this.StateHasChanged();
             await Task.Delay(1500);
-            PmT.Done();
+           // PmT.Done();
         }
         await base.OnInitializedAsync();
     }

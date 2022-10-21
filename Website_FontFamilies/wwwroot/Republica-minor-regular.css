@@ -1,0 +1,9 @@
+﻿@font-face {
+    font-family: 'republica_minor_regular';
+    src: url('republica-minor-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+.republica_minoritalic {
+    font-family: 'republica_minor_regular';
+}
