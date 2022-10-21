@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNetCore.Components.Web
-@inject Product.Infomation PI
+﻿@inject Product.Infomation PI
 @inject Progress.Manager PM
 @inject UnitIdentification.Engine UIE
 @if (PM.Status is Progress.manager.Status.Done) return;
@@ -25,10 +24,7 @@
             @switch (this.UIE.ISO639_1)
             {
                 case "DA":
-                    <div class="text mullermedium-600">
-                        你好世界 Привіт Світ Hello world
-                      @*  Gode minder fra fortiden*@
-                    </div>
+                    <div class="text mullermedium-600">Gode minder fra fortiden</div>
                     break;
                 default:
                     <div class="text mullermedium-600">Good memories from the past</div>
@@ -48,7 +44,6 @@
             break;
     }
     <div class="emoji">@UseEmoji</div>
-    <PageTitle>@Emojis[new Random().Next(0, Emojis.Length - 1)]Claims</PageTitle>
 }
 else
 {
@@ -76,7 +71,7 @@ else
             UseEmoji = Emojis[new Random().Next(0, Emojis.Length - 1)];
             this.StateHasChanged();
             await Task.Delay(1500);
-           // PmT.Done();
+            PmT.Done();
         }
         await base.OnInitializedAsync();
     }
