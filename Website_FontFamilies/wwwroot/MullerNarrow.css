@@ -6,8 +6,10 @@
     font-style: normal;
 
 }
-
 .mullermedium-600 {
     font-family: 'mullermedium', sans-serif;
     font-weight: 600;
+}
+.mullermedium {
+    font-family: 'mullermedium', sans-serif;
 }

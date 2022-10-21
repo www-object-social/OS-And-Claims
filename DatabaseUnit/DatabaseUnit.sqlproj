@@ -70,7 +70,6 @@
       <Name>DatabaseToken</Name>
       <Project>{437c3d9e-a734-454c-a4c8-06c2e8d3b98f}</Project>
       <Private>True</Private>
-      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
     </ProjectReference>
   </ItemGroup>
 </Project>

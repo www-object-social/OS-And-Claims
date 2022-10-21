@@ -1,3 +1,41 @@
-﻿<div class="my-component">
-    This component is defined in the <strong>UI_Authentication</strong> library.
+﻿@inject Product.Infomation PI
+@inject Progress.Manager PM
+@inject UnitIdentification.Engine UIE
+<div class="container">
+   
+    <object data="/_content/UI_Product_Logo/@(PI.Name is StandardInternal.product.infomation.Name.ForwardOBJECTSOCIAL or StandardInternal.product.infomation.Name.OBJECTSOCIAL?"OBJECTSOCIAL":"Claims").svg" class="logo-background" />
+
+    <img src="/_content/UI_Authentication/profil.png" class="profil" />
+    @switch(this.UIE.ISO639_1){
+        case "DA":
+            <div class="questions">Har du en gratis privat konto hos os?</div>
+            <div class="wee-will-make-one">Nej! opret en konto.</div>
+            break;
+        default:
+            <div class="questions">Do you have a free private account with us?</div>
+            <div class="wee-will-make-one">No! Create an account.</div>
+            break;
+    }
+
+
+    <div class="left-line"></div>
+    <div class="right-line"></div>
+    @switch (this.UIE.ISO639_1)
+    {
+        case "DA":
+            <div class="start-condition">Jeg klikker kun på 'Nej! Opret en konto.' fordi jeg er myndig over 13.<br />OBJEKT:SOCIAL har lov til at opbevare en nøgle i min enhed. Det gælder også for de enheder jeg logger på.</div>
+            break;
+        default:
+            <div class="start-condition">I only click on 'No! Create an account.' because I am of legal age over 13.<br />OBJECT:SOCIAL is allowed to store a key in my device. This also applies to the devices I log into.</div>
+            break;
+    }
+    <img src="/_content/UI_Authentication/security.png" class="security" />
 </div>
+@code{
+    protected override Task OnInitializedAsync()
+    {
+        PM.Change += () => InvokeAsync(this.StateHasChanged);
+        UIE.Change += () => InvokeAsync(this.StateHasChanged);
+        return base.OnInitializedAsync();
+    }
+}
