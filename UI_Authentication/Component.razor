@@ -1,36 +1,47 @@
-﻿@inject Product.Infomation PI
-@inject Progress.Manager PM
-@inject UnitIdentification.Engine UIE
-<div class="container">
-   
-    <object data="/_content/UI_Product_Logo/@(PI.Name is StandardInternal.product.infomation.Name.ForwardOBJECTSOCIAL or StandardInternal.product.infomation.Name.OBJECTSOCIAL?"OBJECTSOCIAL":"Claims").svg" class="logo-background" />
-
-    <img src="/_content/UI_Authentication/profil.png" class="profil" />
-    @switch(this.UIE.ISO639_1){
-        case "DA":
-            <div class="questions">Har du en gratis privat konto hos os?</div>
-            <div class="wee-will-make-one">Nej! opret en konto.</div>
-            break;
-        default:
-            <div class="questions">Do you have a free private account with us?</div>
-            <div class="wee-will-make-one">No! Create an account.</div>
-            break;
-    }
-
-
-    <div class="left-line"></div>
-    <div class="right-line"></div>
-    @switch (this.UIE.ISO639_1)
-    {
-        case "DA":
-            <div class="start-condition">Jeg klikker kun på 'Nej! Opret en konto.' fordi jeg er myndig over 13.<br />OBJEKT:SOCIAL har lov til at opbevare en nøgle i min enhed. Det gælder også for de enheder jeg logger på.</div>
-            break;
-        default:
-            <div class="start-condition">I only click on 'No! Create an account.' because I am of legal age over 13.<br />OBJECT:SOCIAL is allowed to store a key in my device. This also applies to the devices I log into.</div>
-            break;
-    }
-    <img src="/_content/UI_Authentication/security.png" class="security" />
-</div>
+﻿@inject Product.Infomation PI;
+@inject Progress.Manager PM;
+@inject UnitIdentification.Engine UIE;
+<span>
+    <UI_020b1bccContainer.Component>
+        <Content>
+            <object data="/_content/UI_Product_Logo/OBJECTSOCIAL.svg" class="logo-background" />
+            <img src="/_content/UI_Authentication/profil.png" class="profil" />
+            @switch (this.UIE.ISO639_1)
+            {
+                case "DA":
+                <div class="questions">Har du en gratis privat konto hos os?</div>
+                <div class="wee-will-make-one">Nej! opret en konto.</div>
+                break;
+                default:
+                <div class="questions">Do you have a free private account with us?</div>
+                <div class="wee-will-make-one">No! Create an account.</div>
+                break;
+            }
+            <div class="left-line"></div>
+            <div class="right-line"></div>
+            @switch (this.UIE.ISO639_1)
+            {
+                case "DA":
+                <div class="start-condition">Jeg klikker kun på 'Nej! Opret en konto.' fordi jeg er myndig over 13 år.<br />OBJECT:SOCIAL har lov til at opbevare en nøgle i min enhed. Det gælder også for de enheder jeg logger på.</div>
+                break;
+                default:
+                <div class="start-condition">I only click on 'No! Create an account.' because I am of legal age over 13 years.<br />OBJECT:SOCIAL is allowed to store a key in my device. This also applies to the devices I log into.</div>
+                break;
+            }
+            <img src="/_content/UI_Authentication/security.png" class="security" />
+            <div class="mobile">
+               <div class="prefix">DK +45</div>
+                <input type="text" placeholder="Mobil nummer" />
+            </div>
+            <div class="email">
+                <input type="text" placeholder="E-mail" />
+            </div>
+            <div class="or">
+                Eller
+            </div>
+        </Content>
+    </UI_020b1bccContainer.Component>
+</span>
 @code{
     protected override Task OnInitializedAsync()
     {

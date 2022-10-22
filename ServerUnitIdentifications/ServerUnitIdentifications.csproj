@@ -5,6 +5,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="WhoisClient.NET" Version="4.0.0" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\PongPing\PongPing.csproj" />
     <ProjectReference Include="..\Product\Product.csproj" />
     <ProjectReference Include="..\ServerToken\ServerToken.csproj" />

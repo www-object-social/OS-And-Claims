@@ -1,16 +1,18 @@
 ﻿@inherits LayoutComponentBase
-@inject UnitIdentification.Engine UIE
 @Body
+@if (PM.Status is Progress.manager.Status.Done)
+{
+    <UI_Authentication.Component />
+
+}
 <UI_StoryBeginsHere.Component/>
 <UI_Product_Logo.Component/>
 <UI_BrowserSupport.Component/>
 <UI_Progress.Component />
 <UI_ApplicationSupport.Component/>
 <UI_No_Internet.Component/>
-@if (PM.Status is Progress.manager.Status.Done) {
-  <UI_Authentication.Component />
 
-}
+
 @code{
     protected override Task OnInitializedAsync()
     {

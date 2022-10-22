@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
+using System.Globalization;
 
 namespace UnitIdentification;
 public class Engine
@@ -17,6 +18,16 @@ public class Engine
         this.PPE.PmT.Change += async () => await PmT_Change();
         this.UI = UI;
     }
+    private string _ISO3166 = null!;
+    public string ISO3166 {
+        get => _ISO3166;
+        set {
+            if (_ISO3166 == value) return;
+            _ISO3166 = value;
+            this.ChangeAction?.Invoke();
+        }
+    }
+
     private Action ChangeAction = null!;
     public event Action Change {
         add => ChangeAction += value;
@@ -36,13 +47,13 @@ public class Engine
     private bool _AnyUser = false;
     public bool AnyUser {
         get => _AnyUser;
-        set { 
+        private set { 
             if(_AnyUser==value) return;
             _AnyUser = value;
             this.ChangeAction?.Invoke();
         }
     }
-    public async Task Update() => await this.PPE.Hub.InvokeAsync("UI_V", await this.S.Read(), this.UI.ISO639_1, this.UI.Type, this.PI.Name, this.UI.BaseUtcOffsetTotalMinutes);
+    public async Task Update() => await this.PPE.Hub.InvokeAsync("UI_V", await this.S.Read(), this.UI.ISO639_1, this.ISO3166, this.UI.Type, this.PI.Name, this.UI.BaseUtcOffsetTotalMinutes);
     private bool IsUpdateRuning = false;
     private async Task TimeUpdate() {
         if (this.PmT.Status is Progress.manager.Status.Done)
@@ -58,10 +69,12 @@ public class Engine
         if (PPE.PmT.Status is Progress.manager.Status.Done)
         {
             this.PmT.InProcess();
-            this.PPE.Hub.On<string, bool, string>("UI_S", async (token, anyuser, iSO639_1) => {
+			this.ISO3166 = this.UI.ISO3166;
+			this.PPE.Hub.On<string, bool, string,string>("UI_S", async (token, anyuser, iSO639_1, iso3166) => {
                 await S.Save(token, anyuser ? StandardInternal.unitIdentification.storage.Type.Local : StandardInternal.unitIdentification.storage.Type.Temporarily);
                 this.ISO639_1 = iSO639_1;
                 this.AnyUser = anyuser;
+                this.ISO3166 = iso3166;
                 if(this.PmT.Status is not Progress.manager.Status.Done)
                 this.PmT.Done();
                 if (this.IsUpdateRuning) {
@@ -71,7 +84,7 @@ public class Engine
             });
 
             if (await this.S.Type() is StandardInternal.unitIdentification.storage.Type.None)
-                await this.PPE.Hub.InvokeAsync("UI_C", this.UI.ISO639_1, this.UI.Type, this.PI.Name, this.UI.BaseUtcOffsetTotalMinutes);
+                await this.PPE.Hub.InvokeAsync("UI_C", this.UI.ISO639_1, this.ISO3166, this.UI.Type, this.PI.Name, this.UI.BaseUtcOffsetTotalMinutes);
             else
                 await Update();
         }
