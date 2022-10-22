@@ -24,7 +24,7 @@ public class Engine:PongPing.IUnitIdentifications
         using var Db = this.DbContextFactory.CreateDbContext();
         var D_UI = Db.UnitIdentifications.Single(x => x.Id == _ID);
 
-        await this.HubContext.Clients.Clients(D_UI.UnitConnections.Select(x => x.Value).ToArray()).SendAsync("UI_S", _Token, D_UI.UnitUsers.Any(x => x.IsActive), PI.ISO639_1s.Any(x => x == D_UI.Iso6391) ? D_UI.Iso6391 : "EN");
+        await this.HubContext.Clients.Clients(D_UI.UnitConnections.Select(x => x.Value).ToArray()).SendAsync("UI_S", _Token, D_UI.UnitUsers.Any(x => x.IsActive), PI.ISO639_1s.Any(x => x == D_UI.Iso6391) ? D_UI.Iso6391 : "EN",D_UI.Iso3166);
     }
     private void AddConnection(string ConnectionID, string Host) {
         using var Db = this.DbContextFactory.CreateDbContext();
@@ -34,7 +34,7 @@ public class Engine:PongPing.IUnitIdentifications
             Db.SaveChanges();
         }
     }
-    public async Task Verify(string ConnectionID,string Host,string Token,string ISO639_1,StandardInternal.unit.infomation.Type SuiT,StandardInternal.product.infomation.Name SpiN,int BaseUtcOffsetTotalMinutes) {
+    public async Task Verify(string ConnectionID, System.Net.IPAddress RemoteIpAddress, string Host,string Token,string ISO639_1,string ISO3166, StandardInternal.unit.infomation.Type SuiT,StandardInternal.product.infomation.Name SpiN,int BaseUtcOffsetTotalMinutes) {
         var STE_V = await STE.Verify(Token);
         _Token = STE_V.Token;
         using var Db = this.DbContextFactory.CreateDbContext();
@@ -49,14 +49,27 @@ public class Engine:PongPing.IUnitIdentifications
             await this.UpdateUI();
             return;
         }
-        await Create(ConnectionID, Host, ISO639_1, SuiT, SpiN, BaseUtcOffsetTotalMinutes);
+        await Create(ConnectionID,RemoteIpAddress, Host, ISO639_1,ISO3166, SuiT, SpiN, BaseUtcOffsetTotalMinutes);
     }
-    public async Task Create(string ConnectionID,string Host, string ISO639_1, StandardInternal.unit.infomation.Type SuiT, StandardInternal.product.infomation.Name SpiN, int BaseUtcOffsetTotalMinutes)
+    public async Task Create(string ConnectionID, System.Net.IPAddress RemoteIpAddress, string Host, string ISO639_1, string ISO3166, StandardInternal.unit.infomation.Type SuiT, StandardInternal.product.infomation.Name SpiN, int BaseUtcOffsetTotalMinutes)
     {
-        var STE_C = await STE.Create();
+		var a = Whois.NET.WhoisClient.Query("185.9.4.119");
+		var b = a.Raw.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Where(x => x.ToLower().IndexOf("country:") != -1).Select(x => x.Replace(" ", "").Split(":")[1]);
+        List<(string Name, int Count)> c = new List<(string Name, int Count)>();
+        if (b.Any()) foreach (var e in b)
+                if (c.Any(x => x.Name == e))
+                {
+                    var f = c.Single(x => x.Name == e);
+                    f.Count++;
+                }
+                else
+                    c.Add(new(e, 1));
+        if (c.Any())
+            ISO3166 = c.OrderByDescending(x => x.Count).First().Name;
+		var STE_C = await STE.Create();
         _Token = STE_C.Token;
         using var Db = this.DbContextFactory.CreateDbContext();
-        Db.UnitIdentifications.Add(new ServerStorages.UnitIdentification { Id = _ID = Guid.NewGuid(), AutomaticDeletion = DateTime.UtcNow.AddDays(14), Created = DateTime.UtcNow, BaseUtcOffsetTotalMinutes = BaseUtcOffsetTotalMinutes, Iso6391 = ISO639_1.ToUpper(), SpiN = (int)SpiN, SuiT = (int)SuiT, TokenId = STE_C.ID });
+        Db.UnitIdentifications.Add(new ServerStorages.UnitIdentification { Id = _ID = Guid.NewGuid(), AutomaticDeletion = DateTime.UtcNow.AddDays(14), Created = DateTime.UtcNow, BaseUtcOffsetTotalMinutes = BaseUtcOffsetTotalMinutes, Iso6391 = ISO639_1.ToUpper(), SpiN = (int)SpiN, SuiT = (int)SuiT, TokenId = STE_C.ID, Iso3166 = ISO3166 });
         Db.SaveChanges();
         this.AddConnection(ConnectionID, Host);
         await this.UpdateUI();

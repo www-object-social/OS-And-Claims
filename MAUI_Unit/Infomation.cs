@@ -18,6 +18,9 @@ public class Infomation:Unit.IInfomation
     #endif
     private Action ChangeAction = null!;
     public int BaseUtcOffsetTotalMinutes => (int)TimeZoneInfo.Local.BaseUtcOffset.TotalMinutes;
+
+    public string ISO3166 => System.Globalization.RegionInfo.CurrentRegion.TwoLetterISORegionName.ToUpper();
+
     public event Action Change
     {
         add => ChangeAction += value;

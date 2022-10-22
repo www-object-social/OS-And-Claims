@@ -111,6 +111,10 @@ namespace ServerStorages
 
                 entity.Property(e => e.Created).HasColumnType("datetime");
 
+                entity.Property(e => e.Iso3166)
+                    .HasMaxLength(2)
+                    .HasColumnName("ISO3166");
+
                 entity.Property(e => e.Iso6391)
                     .HasMaxLength(2)
                     .HasColumnName("ISO639_1");

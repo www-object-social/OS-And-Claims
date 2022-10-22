@@ -1,0 +1,7 @@
+﻿<div class="container">
+    @Content
+</div>
+@code{
+    [Parameter,EditorRequired]
+    public RenderFragment Content { get; set; } = null!;
+}

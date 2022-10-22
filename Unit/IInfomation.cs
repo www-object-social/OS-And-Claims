@@ -6,4 +6,5 @@ public interface IInfomation
     public  StandardInternal.unit.infomation.Type Type { get; }
     public int BaseUtcOffsetTotalMinutes { get; }
     public event Action Change;
+	public string ISO3166 { get; }
 }

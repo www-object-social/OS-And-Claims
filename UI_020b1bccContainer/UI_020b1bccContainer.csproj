@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
@@ -11,9 +11,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.10" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Product\Product.csproj" />
-    <ProjectReference Include="..\Progress\Progress.csproj" />
-    <ProjectReference Include="..\UI_020b1bccContainer\UI_020b1bccContainer.csproj" />
-    <ProjectReference Include="..\UnitIdentification\UnitIdentification.csproj" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 </Project>

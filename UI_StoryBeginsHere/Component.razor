@@ -1,6 +1,6 @@
-﻿@inject Product.Infomation PI
-@inject Progress.Manager PM
-@inject UnitIdentification.Engine UIE
+﻿@inject Product.Infomation PI;
+@inject Progress.Manager PM;
+@inject UnitIdentification.Engine UIE;
 @if (PM.Status is Progress.manager.Status.Done) return;
 @if (PI.Name is StandardInternal.product.infomation.Name.BadClaims or StandardInternal.product.infomation.Name.GoodClaims or StandardInternal.product.infomation.Name.MemoryClaims)
 {
@@ -35,10 +35,10 @@
             @switch (this.UIE.ISO639_1)
             {
                 case "DA":
-                    <div class="text mullermedium-600">Historie af dig</div>
+                    <div class="text mullermedium-600">Historie fra dig</div>
                     break;
                 default:
-                    <div class="text mullermedium-600">Story by you</div>
+                    <div class="text mullermedium-600">Story from you</div>
                     break;
             }
             break;

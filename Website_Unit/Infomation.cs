@@ -1,4 +1,5 @@
 ﻿using Microsoft.JSInterop;
+using System.Globalization;
 using Unit.infomation;
 namespace Website_Unit;
 public class Infomation : Unit.IInfomation
@@ -22,10 +23,16 @@ public class Infomation : Unit.IInfomation
 
 	public int BaseUtcOffsetTotalMinutes => (int)TimeZoneInfo.Local.BaseUtcOffset.TotalMinutes;
 
+	public string ISO3166 { get; private set; } = "US";
 
-    private DotNetObjectReference<Infomation> DotNetObjectRef = null!;
+	private DotNetObjectReference<Infomation> DotNetObjectRef = null!;
 	private async Task Construter(IJSRuntime jSRuntime) {
 		JSObject = await jSRuntime.InvokeAsync<IJSObjectReference>("import", "/_content/Website_Unit/Infomation.js");
+		var TestCountry = (await JSObject.InvokeAsync<string[]>("AttemptGetCountry")).Where(x => x.IndexOf("-") != -1);
+		if (TestCountry.Any())
+			this.ISO3166 = new RegionInfo(TestCountry.First()).TwoLetterISORegionName.ToUpper();
+	
+		Console.WriteLine(this.ISO3166);
 		var UA = await JSObject.InvokeAsync<string>("UserAgent");
 		if (UA.ToLower().Contains(" firefox/"))
 			Type = StandardInternal.unit.infomation.Type.Firefox;
