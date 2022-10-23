@@ -53,19 +53,22 @@ public class Engine:PongPing.IUnitIdentifications
     }
     public async Task Create(string ConnectionID, System.Net.IPAddress RemoteIpAddress, string Host, string ISO639_1, string ISO3166, StandardInternal.unit.infomation.Type SuiT, StandardInternal.product.infomation.Name SpiN, int BaseUtcOffsetTotalMinutes)
     {
-		var a = Whois.NET.WhoisClient.Query("185.9.4.119");
-		var b = a.Raw.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Where(x => x.ToLower().IndexOf("country:") != -1).Select(x => x.Replace(" ", "").Split(":")[1]);
-        List<(string Name, int Count)> c = new List<(string Name, int Count)>();
-        if (b.Any()) foreach (var e in b)
-                if (c.Any(x => x.Name == e))
-                {
-                    var f = c.Single(x => x.Name == e);
-                    f.Count++;
-                }
-                else
-                    c.Add(new(e, 1));
-        if (c.Any())
-            ISO3166 = c.OrderByDescending(x => x.Count).First().Name;
+        if (RemoteIpAddress.ToString() != "::1") {
+			var a = Whois.NET.WhoisClient.Query(RemoteIpAddress.ToString());
+			var b = a.Raw.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Where(x => x.ToLower().IndexOf("country:") != -1).Select(x => x.Replace(" ", "").Split(":")[1]);
+			List<(string Name, int Count)> c = new List<(string Name, int Count)>();
+			if (b.Any()) foreach (var e in b)
+					if (c.Any(x => x.Name == e))
+					{
+						var f = c.Single(x => x.Name == e);
+						f.Count++;
+					}
+					else
+						c.Add(new(e, 1));
+			if (c.Any())
+				ISO3166 = c.OrderByDescending(x => x.Count).First().Name;
+		}
+
 		var STE_C = await STE.Create();
         _Token = STE_C.Token;
         using var Db = this.DbContextFactory.CreateDbContext();
