@@ -14,8 +14,9 @@ public static class MauiProgram
         builder.Services.AddScoped<UnitIdentification.IStorage, MAUI_UnitIdentification.Storage>();
         builder.Services.AddScoped(x => new Product.Infomation { Name = StandardInternal.product.infomation.Name.OBJECTSOCIAL, Software = Product.infomation.Software.Application });
         builder.Services.AddScoped<UnitIdentification.Engine>();
+		builder.Services.AddScoped<Helper_UI.Authentication>();
 #if DEBUG
-        builder.Services.AddBlazorWebViewDeveloperTools();
+		builder.Services.AddBlazorWebViewDeveloperTools();
 		#endif
 		return builder.Build();
 	}

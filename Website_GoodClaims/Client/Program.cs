@@ -19,4 +19,5 @@ ISDeveloper=
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddScoped<UnitIdentification.IStorage, Website_UnitIdentification.Storage>();
 builder.Services.AddScoped<UnitIdentification.Engine>();
+builder.Services.AddScoped<Helper_UI.Authentication>();
 await builder.Build().RunAsync();
