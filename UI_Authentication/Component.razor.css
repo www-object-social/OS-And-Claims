@@ -81,8 +81,28 @@
     bottom: -110px;
     z-index: -1;
 }
-
-
+.choice-preifx {
+    position: absolute;
+    top: 183px;
+    left:1%;
+    width: 98%;
+    height: 165px;
+    overflow-y:scroll;
+}
+.cancel-choice-preifx {
+    background: #ff0000;
+   
+    width: 200px;
+    font-family: 'mullermedium', sans-serif;
+    color: #FFF;
+    position: absolute;
+    bottom: 5px;
+    left: 35px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
 .mobile {
     position: absolute;
     width: 90%;
@@ -92,7 +112,7 @@
     left: 5%;
     border-radius: 10px 10px 0 0;
     background: #fff;
-    overflow:hidden;
+    overflow: hidden;
 }
     .mobile input {
         position: absolute;
@@ -102,16 +122,16 @@
         font-family: 'mullermedium', sans-serif;
         padding: 8px;
         font-size: 10px;
-        font-weight: 600;
         cursor: text;
+       text-transform:uppercase;
     }
         .mobile input::placeholder, .email input::placeholder {
             font-family: 'mullermedium', sans-serif;
             padding: 8px;
-            font-size: 10px;
-            font-weight: 600;
-            color: #808080;
-            text-align:center;
+            font-size: 14px;
+            color: #000;
+            text-align: center;
+            text-transform:none;
         }
 .email input {
     position: absolute;
@@ -120,8 +140,8 @@
     font-family: 'mullermedium', sans-serif;
     padding: 8px;
     font-size: 10px;
-    font-weight: 600;
     cursor: text;
+    text-transform: uppercase;
 }
 .email {
     position: absolute;
@@ -135,16 +155,20 @@
 }
 .prefix {
     font-size: 10px;
-    position:absolute;
-    top:0px;
-    left:0px;
-    width:90px;
-    padding:8px;
-    border-right:dashed 1px #808080;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 90px;
+    padding: 8px;
+    color: #fff;
+    border-right: dashed 1px #808080;
     font-family: 'mullermedium', sans-serif;
-    text-align:center;
+    text-align: center;
+    background: #808080;
+    -webkit-box-shadow: 0px 0px 30px 10px #000000 inset;
+    -moz-box-shadow: 0px 0px 30px 10px #000000 inset;
+    box-shadow: 0px 0px 30px 10px #000000 inset;
     cursor:pointer;
-    font-weight:600;
 }
 .or {
     position: absolute;
@@ -155,11 +179,49 @@
     padding: 2px  8px 2px 8px;
     font-family: 'mullermedium', sans-serif;
     border-radius: 10px 0 0 10px;
-    font-weight: 600;
     border-left: dashed .1px #808080;
     border-bottom: dashed .1px #808080;
     border-top: dashed .1px #808080;
 }
+.item {
+    width: 99%;
+    position: relative;
+    display: inline;
+    float: left;
+    cursor:pointer;
+}
+    
+    .item * {
+        font-family: 'mullermedium', sans-serif;
+        font-weight: 600;
+        color: #fff;
+        padding: 6px 5px;
+        font-size: 12px;
+        float: left;
+        cursor: pointer;
+    }
+.iso6311 {
+    font-family: 'mullermedium', sans-serif;
+    color: #fff;
+    border-radius:50%;
+    border:solid 1px #fff;
+    margin:2px;
+    width:20px;
+    text-align:center;
+}
+.prefix-number {
+    text-align: right;
+    width: 55px;
+    margin: 2px;
+    font-size:10px;
+    text-align:center;
+}
+.country {
+    margin: 2px;
+    width: 157px;
+}
+/*this is for need if text is right*/
+.right {text-align:right;}
 @media only screen and (max-width: 700px) {
     ::deep .container {
         left: calc(50% - 140px);
