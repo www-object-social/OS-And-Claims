@@ -102,16 +102,16 @@
         font-family: 'mullermedium', sans-serif;
         padding: 8px;
         font-size: 10px;
-        font-weight: 600;
         cursor: text;
+       text-transform:uppercase;
     }
         .mobile input::placeholder, .email input::placeholder {
             font-family: 'mullermedium', sans-serif;
             padding: 8px;
-            font-size: 10px;
-            font-weight: 600;
-            color: #808080;
-            text-align:center;
+            font-size: 14px;
+            color: #000;
+            text-align: center;
+            text-transform:none;
         }
 .email input {
     position: absolute;
@@ -120,8 +120,8 @@
     font-family: 'mullermedium', sans-serif;
     padding: 8px;
     font-size: 10px;
-    font-weight: 600;
     cursor: text;
+    text-transform: uppercase;
 }
 .email {
     position: absolute;
@@ -135,16 +135,20 @@
 }
 .prefix {
     font-size: 10px;
-    position:absolute;
-    top:0px;
-    left:0px;
-    width:90px;
-    padding:8px;
-    border-right:dashed 1px #808080;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 90px;
+    padding: 8px;
+    color: #fff;
+    border-right: dashed 1px #808080;
     font-family: 'mullermedium', sans-serif;
-    text-align:center;
+    text-align: center;
+    background: #808080;
+    -webkit-box-shadow: 0px 0px 30px 10px #000000 inset;
+    -moz-box-shadow: 0px 0px 30px 10px #000000 inset;
+    box-shadow: 0px 0px 30px 10px #000000 inset;
     cursor:pointer;
-    font-weight:600;
 }
 .or {
     position: absolute;
@@ -155,7 +159,6 @@
     padding: 2px  8px 2px 8px;
     font-family: 'mullermedium', sans-serif;
     border-radius: 10px 0 0 10px;
-    font-weight: 600;
     border-left: dashed .1px #808080;
     border-bottom: dashed .1px #808080;
     border-top: dashed .1px #808080;
