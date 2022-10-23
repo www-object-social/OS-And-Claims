@@ -1,0 +1,47 @@
+﻿using Helper_UI.authentication;
+
+namespace Helper_UI;
+public class Authentication
+{
+	private Action ChangeAction;
+	public event Action Change {
+		add => ChangeAction += value;
+		remove => ChangeAction -= value;
+	}
+	private Do _Do = Do.Authentication;
+	public Do Do {
+		get => _Do;
+		private set {
+			if (value == _Do) return;
+			_Do = value;  
+			this.ChangeAction?.Invoke();
+		}
+	}
+	public void ChangeToPrefix() => Do = Do.Prefix;
+	public void ChangeToAuthentication() {
+		Email = "";
+		Mobile = "";
+		this.CancelToAuthentication();
+	}
+	public void CancelToAuthentication()=> Do = Do.Authentication;
+	private string _Email = "";
+	private string _Mobile = "";
+	public string Email {
+		get => _Email;
+		set { 
+			if(_Email == value) return;
+			_Email = value;
+			this.ChangeAction?.Invoke();
+		}
+	}
+	public string Mobile
+	{
+		get => _Mobile;
+		set
+		{
+			if (_Mobile == value) return;
+			_Mobile = value;
+			this.ChangeAction?.Invoke();
+		}
+	}
+}

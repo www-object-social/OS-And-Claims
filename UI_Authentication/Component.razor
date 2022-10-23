@@ -1,6 +1,7 @@
 @inject Product.Infomation PI;
 @inject Progress.Manager PM;
 @inject UnitIdentification.Engine UIE;
+@inject Helper_UI.Authentication HUIA;
 <span>
     <UI_020b1bccContainer.Component>
         <Content>
@@ -24,16 +25,18 @@
                 break;
             }
             <div class="right-line"></div>
-            @switch (this.UIE.ISO639_1)
+            @switch(this.HUIA.Do){
+                 case Helper_UI.authentication.Do.Authentication:
+                             @switch (this.UIE.ISO639_1)
             {
-                case "DA":
+                case "DA" :
                     <div class="connect">Forbind</div>
                     <div class="mobile">
-                        <div class="prefix">DK +45</div>
-                        <input type="text" placeholder="Mobil nummer" />
+                        <div class="prefix" @onclick=this.HUIA.ChangeToPrefix>DK +45</div>
+                        <input type="text" placeholder="Mobil nummer" @bind-value=HUIA.Mobile />
                     </div>
                     <div class="email">
-                        <input type="text" placeholder="E-mail" />
+                        <input type="text" placeholder="E-mail" @bind-value=HUIA.Email />
                     </div>
                     <div class="or">
                         Eller
@@ -42,18 +45,20 @@
                 default:
                     <div class="connect">Connect</div>
                     <div class="mobile">
-                        <div class="prefix">DK +45</div>
-                        <input type="text" placeholder="Mobile number" />
+                        <div class="prefix" @onclick=this.HUIA.ChangeToPrefix>DK +45</div>
+                        <input type="text" placeholder="Mobile number" @bind-value=HUIA.Mobile />
                     </div>
                     <div class="email">
-                        <input type="text" placeholder="E-mail" />
+                        <input type="text" placeholder="E-mail" @bind-value=HUIA.Email/>
                     </div>
                     <div class="or">
                         Or
                     </div>
                     break;
             }
-            <!--
+                    break;
+                 case Helper_UI.authentication.Do.Prefix:
+                          
             <div class="choice-preifx">
                       <div class="item">
                     <div class="iso6311">AD</div>
@@ -1076,9 +1081,12 @@
                     <div class="country">Zimbabwe</div>
                 </div>
             </div>
-            <div class="cancel-choice-preifx">
+            <div class="cancel-choice-preifx" @onclick=this.HUIA.CancelToAuthentication>
                 Cancel
-            </div>-->
+            </div>
+                    break;
+            }
+
             <img src="/_content/UI_Authentication/security.png" class="security" />
         </Content>
     </UI_020b1bccContainer.Component>
@@ -1087,6 +1095,8 @@
     protected override Task OnInitializedAsync()
     {
         PM.Change += () => InvokeAsync(this.StateHasChanged);
+        HUIA.Change += () => InvokeAsync(this.StateHasChanged);
+        HUIA.ChangeToAuthentication();
         UIE.Change += () => InvokeAsync(this.StateHasChanged);
         return base.OnInitializedAsync();
     }

@@ -11,6 +11,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.10" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Helper_UI\Helper_UI.csproj" />
     <ProjectReference Include="..\Product\Product.csproj" />
     <ProjectReference Include="..\Progress\Progress.csproj" />
     <ProjectReference Include="..\UI_020b1bccContainer\UI_020b1bccContainer.csproj" />
