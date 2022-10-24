@@ -41,6 +41,10 @@ public class Authentication
 		{
 			if (_Mobile == value) return;
 			_Mobile = value;
+			if (_Mobile.Length != 0)
+				this.Do = Do.AuthenticationMobile;
+			else
+				this.Do = Do.Authentication;
 			this.ChangeAction?.Invoke();
 		}
 	}
