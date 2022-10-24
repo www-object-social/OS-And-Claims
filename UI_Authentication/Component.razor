@@ -16,43 +16,25 @@
             <div class="right-line"></div>
             @switch(this.HUIA.Do){
                  case Helper_UI.authentication.Do.Authentication:
-                             @switch (this.UIE.ISO639_1)
-            {
-                case "DA" :
-                    <div class="connect">Forbind</div>
-                    <div class="mobile">
-                        <div class="prefix" @onclick=this.HUIA.ChangeToPrefix>DK +45</div>
-                        <input type="text" placeholder="Mobil nummer" @bind-value=HUIA.Mobile />
+                    <div class="connect" data-writes=@(this.HUIA.Mobile.Length != 0||this.HUIA.Email.Length != 0?"true":"false")>Connect</div>
+
+                    @if (this.HUIA.Email.Length == 0)
+                    {
+                        <div class="mobile" data-writes=@(this.HUIA.Mobile.Length != 0?"true":"false")>
+                            <div class="prefix" @onclick=this.HUIA.ChangeToPrefix>DK +45</div>
+                        <input type="text" placeholder="Mobile number" @bind=HUIA.Mobile @bind:event="oninput" />
                     </div>
-                    <div class="email">
-                        <input type="text" placeholder="E-mail" @bind-value=HUIA.Email />
-                    </div>
-                    <div class="or">
-                        Eller
-                    </div>
+                    }
+                     @if (this.HUIA.Mobile.Length == 0){
+                                         <div class="email" data-writes=@(this.HUIA.Email.Length != 0?"true":"false")>
+                        <input type="text" placeholder="E-mail" @bind=HUIA.Email @bind:event="oninput" />
+                    </div>    
+                     }                
+                    @if (this.HUIA.Mobile.Length == 0&&this.HUIA.Email.Length==0) { 
+                        <div class="or">Or</div>
+                    }
                     break;
-                default:
-                    <div class="connect">Connect</div>
-                    <div class="mobile">
-                        <div class="prefix" @onclick=this.HUIA.ChangeToPrefix>DK +45</div>
-                        <input type="text" placeholder="Mobile number" @bind-value=HUIA.Mobile />
-                    </div>
-                    <div class="email">
-                        <input type="text" placeholder="E-mail" @bind-value=HUIA.Email/>
-                    </div>
-                    <div class="or">
-                        Or
-                    </div>
-                    break;
-            }
-                    break;
-            case Helper_UI.authentication.Do.AuthenticationMobile:
-                    <div class="connect">Connect</div>
-                    <div class="mobile">
-                        <div class="prefix" @onclick=this.HUIA.ChangeToPrefix>DK +45</div>
-                        <input type="text" placeholder="Mobile number" @bind-value=HUIA.Mobile />
-                    </div>
-                    break;
+
                  case Helper_UI.authentication.Do.Prefix:
                           
             <div class="choice-preifx">

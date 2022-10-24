@@ -3,7 +3,7 @@
 namespace Helper_UI;
 public class Authentication
 {
-	private Action ChangeAction;
+	private Action ChangeAction = null!;
 	public event Action Change {
 		add => ChangeAction += value;
 		remove => ChangeAction -= value;
@@ -41,11 +41,8 @@ public class Authentication
 		{
 			if (_Mobile == value) return;
 			_Mobile = value;
-			if (_Mobile.Length != 0)
-				this.Do = Do.AuthenticationMobile;
-			else
-				this.Do = Do.Authentication;
 			this.ChangeAction?.Invoke();
 		}
 	}
+
 }

@@ -8,5 +8,5 @@ namespace Helper_UI.authentication;
 
 public enum Do
 {
-	Authentication, AuthenticationMobile, Prefix
+	Authentication, Prefix
 }

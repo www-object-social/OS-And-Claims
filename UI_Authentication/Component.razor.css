@@ -49,10 +49,13 @@
 .connect {
     top:258px;
 }
+    .connect[data-writes="true"] {
+        top: 228px;
+    }
     .start-condition {
         color: #fff;
         position: absolute;
-        font-size: 8.5px;
+        font-size: 7.5px;
         text-align: center;
         top: 95px;
         padding: 5px;
@@ -113,6 +116,10 @@
     background: #fff;
     overflow: hidden;
 }
+    .mobile[data-writes="true"] {
+        border-bottom: none;
+        border-radius: 10px;
+    }
     .mobile input {
         position: absolute;
         left: 107px;
@@ -122,7 +129,7 @@
         padding: 8px;
         font-size: 10px;
         cursor: text;
-       text-transform:uppercase;
+        text-transform: uppercase;
     }
         .mobile input::placeholder, .email input::placeholder {
             font-family: 'mullermedium', sans-serif;
@@ -152,6 +159,12 @@
     background: #fff;
     overflow: hidden;
 }
+
+    .email[data-writes="true"] {
+        top: 185px;
+        left: 5%;
+        border-radius: 10px;
+    }
 .prefix {
     font-size: 10px;
     position: absolute;
