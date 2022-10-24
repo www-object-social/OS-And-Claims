@@ -23,6 +23,12 @@
         filter: blur(30px);
     }
 
+.item {
+    position: relative;
+    z-index: 0;
+    background: linear-gradient(0deg, #00000000 15%, #020b1bcc 100%);
+    margin:0 0 8px 0
+}
 .questions {
     position: absolute;
     color: #fff;
@@ -84,13 +90,15 @@
     bottom: -110px;
     z-index: -1;
 }
-.choice-preifx {
+.choice-prefix {
     position: absolute;
     top: 183px;
-    left:1%;
+    left: 1%;
     width: 98%;
     height: 165px;
-    overflow-y:scroll;
+    overflow-y: scroll;
+    scroll-snap-type: both mandatory;
+    border-top: dashed .1px rgb(0, 0, 0, 1);
 }
 .cancel-choice-preifx {
     background: #ff0000;
@@ -200,19 +208,22 @@
     position: relative;
     display: inline;
     float: left;
-    cursor:pointer;
+    cursor: pointer;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
 }
-    
+
     .item * {
         font-family: 'mullermedium', sans-serif;
-        font-weight: 600;
         color: #fff;
         padding: 6px 5px;
         font-size: 12px;
         float: left;
         cursor: pointer;
+        overflow: hidden;
+        white-space: nowrap;
     }
-.iso6311 {
+.iso3166 {
     font-family: 'mullermedium', sans-serif;
     color: #fff;
     border-radius:50%;
@@ -233,7 +244,9 @@
     width: 157px;
 }
 /*this is for need if text is right*/
-.right {text-align:right;}
+*[data-textalign-is-right="true"] {
+    text-align:right;
+}
 @media only screen and (max-width: 700px) {
     ::deep .container {
         left: calc(50% - 140px);

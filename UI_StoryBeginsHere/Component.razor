@@ -10,37 +10,13 @@
     @switch (this.PI.Name)
     {
         case StandardInternal.product.infomation.Name.BadClaims:
-            @switch (this.UIE.ISO639_1)
-            {
-                case "DA":
-                    <div class="text mullermedium-600">Dårlige minder fra fortiden</div>
-                    break;
-                default:
-                    <div class="text mullermedium-600">Bad memories from the past</div>
-                    break;
-            }
+            <div class="text mullermedium-600">@BadClaims</div>
             break;
         case StandardInternal.product.infomation.Name.GoodClaims:
-            @switch (this.UIE.ISO639_1)
-            {
-                case "DA":
-                    <div class="text mullermedium-600">Gode minder fra fortiden</div>
-                    break;
-                default:
-                    <div class="text mullermedium-600">Good memories from the past</div>
-                    break;
-            }
+            <div class="text mullermedium-600">@GoodClaims</div>
             break;
         default:
-            @switch (this.UIE.ISO639_1)
-            {
-                case "DA":
-                    <div class="text mullermedium-600">Historie fra dig</div>
-                    break;
-                default:
-                    <div class="text mullermedium-600">Story from you</div>
-                    break;
-            }
+            <div class="text mullermedium-600">@MemoryClaims</div>
             break;
     }
     <div class="emoji">@UseEmoji</div>
@@ -50,6 +26,12 @@ else
     <div class="text">connection together</div>
 }
 @code {
+    [Parameter]
+    public RenderFragment BadClaims { get; set; } = null!;
+    [Parameter]
+    public RenderFragment GoodClaims { get; set; } = null!;
+    [Parameter]
+    public RenderFragment MemoryClaims { get; set; } = null!;
     private string UseEmoji = "";
     private string[] Emojis = new[] { "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "🥲", "😊", "😇", "🙂", "🙃", "😉", "😌", "😍", "🥰", "😘", "😗", "😙", "😚", "😋", "😛", "😝", "😜", "🤪", "🤨", "🧐", "🤓", "😎", "🥸", "🤩", "🥳", "😏", "😒", "😞", "😔", "😟", "😕", "🙁", "😣", "😖", "😫", "😩", "🥺", "😢", "😭", "😮‍💨", "😤", "😠", "😡", "🤬", "🤯", "😳", "🥵", "🥶", "😱", "😨", "😰", "😥", "😓", "🤗", "🤔", "🤭", "🤫", "🤥", "😶", "😐", "😑", "😬", "🙄", "😯", "😦", "😧", "😮", "😲", "🥱", "😴", "🤤", "😪", "😵", "😵‍💫", "🤐", "🥴", "🤢", "🤮", "🤧", "😷", "🤒", "🤕", "🤑", "🤠", "😈", "👿", "👹", "👺", "🤡", "💩", "👻", "💀", "☠️", "👽", "👾", "🤖", "🎃", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾", "❤️" };
     protected override async Task OnInitializedAsync()
