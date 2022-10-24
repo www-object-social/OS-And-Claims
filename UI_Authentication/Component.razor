@@ -1,5 +1,5 @@
-@inject Product.Infomation PI;
-@inject Progress.Manager PM;
+@inject Product.Infomation _PI;
+@inject Progress.Manager _PM;
 @inject UnitIdentification.Engine UIE;
 @inject Helper_UI.Authentication HUIA;
 <span>
@@ -11,7 +11,7 @@
             <div class="right-line"></div>
                     <div class="questions">Do you have a free private account with us?</div>
                     <div class="wee-will-make-one">No! Create an account</div>
-                    <div class="start-condition">I only click on 'No! Create an account.' because I am of legal age over 13 years.<br />OBJECT:SOCIAL is allowed to store a key in my device. This also applies to the devices I log into.</div>
+                    <div class="start-condition">I only click on 'No! Create an account.' because I am of legal age over 13 years.<br />OBJECT:SOCIAL is allowed to store a key in my device.<br/>This also applies to the devices i will use to connect OBJECT:SOCIAL services.</div>
 
             <div class="right-line"></div>
             @switch(this.HUIA.Do){
@@ -21,1042 +21,1041 @@
                     @if (this.HUIA.Email.Length == 0)
                     {
                         <div class="mobile" data-writes=@(this.HUIA.Mobile.Length != 0?"true":"false")>
-                            <div class="prefix" @onclick=this.HUIA.ChangeToPrefix>DK +45</div>
-                        <input type="text" placeholder="Mobile number" @bind=HUIA.Mobile @bind:event="oninput" />
-                    </div>
+                            <div class="prefix" @onclick=this.HUIA.ChangeToPrefix>@UIE.ISO3166 +@_PI.Prefixs.Single(x=>x.ISO==UIE.ISO3166).Prefix </div>
+                            <input type="text" placeholder="Mobile number" @bind=HUIA.Mobile @bind:event="oninput" />
+                        </div>
                     }
                      @if (this.HUIA.Mobile.Length == 0){
-                                         <div class="email" data-writes=@(this.HUIA.Email.Length != 0?"true":"false")>
-                        <input type="text" placeholder="E-mail" @bind=HUIA.Email @bind:event="oninput" />
-                    </div>    
+                         <div class="email" data-writes=@(this.HUIA.Email.Length != 0?"true":"false")>
+                             <input type="text" placeholder="E-mail" @bind=HUIA.Email @bind:event="oninput" />
+                         </div>    
                      }                
                     @if (this.HUIA.Mobile.Length == 0&&this.HUIA.Email.Length==0) { 
                         <div class="or">Or</div>
                     }
                     break;
 
-                 case Helper_UI.authentication.Do.Prefix:
-                          
-            <div class="choice-preifx">
-                      <div class="item">
-                    <div class="iso6311">AD</div>
+                 case Helper_UI.authentication.Do.Prefix:   
+            <div class="choice-prefix">
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("AD")' >
+                    <div class="iso3166">AD</div>
                     <div class="prefix-number">+376</div>
-                    <div class="country">Andorra</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@AD</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">AE</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("AE")' >
+                    <div class="iso3166">AE</div>
                     <div class="prefix-number">+971</div>
-                    <div class="country">United Arab Emirates</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@AE</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">AF</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("AF")' >
+                    <div class="iso3166">AF</div>
                     <div class="prefix-number">+93</div>
-                    <div class="country">Afghanistan</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@AF</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">US</div>
-                    <div class="prefix-number">+1</div>
-                    <div class="country">United States</div>
-                </div>
-                <div class="item">
-                    <div class="iso6311">AL</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("AL")' >
+                    <div class="iso3166">AL</div>
                     <div class="prefix-number">+355</div>
-                    <div class="country">Albania</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@AL</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">AM</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("AM")' >
+                    <div class="iso3166">AM</div>
                     <div class="prefix-number">+374</div>
-                    <div class="country">Armenia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@AM</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">AO</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("AO")' >
+                    <div class="iso3166">AO</div>
                     <div class="prefix-number">+244</div>
-                    <div class="country">Angola</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@AO</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">AR</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("AR")' >
+                    <div class="iso3166">AR</div>
                     <div class="prefix-number">+54</div>
-                    <div class="country">Argentina</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@AR</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">AT</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("AT")' >
+                    <div class="iso3166">AT</div>
                     <div class="prefix-number">+43</div>
-                    <div class="country">Austria</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@AT</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">AU</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("AU")' >
+                    <div class="iso3166">AU</div>
                     <div class="prefix-number">+61</div>
-                    <div class="country">Australia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@AU</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">AW</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("AW")' >
+                    <div class="iso3166">AW</div>
                     <div class="prefix-number">+297</div>
-                    <div class="country">Aruba</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@AW</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">FI</div>
-                    <div class="prefix-number">+358</div>
-                    <div class="country">Finland</div>
-                </div>
-                <div class="item">
-                    <div class="iso6311">AZ</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("AZ")' >
+                    <div class="iso3166">AZ</div>
                     <div class="prefix-number">+994</div>
-                    <div class="country">Azerbaijan</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@AZ</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">BA</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("BA")' >
+                    <div class="iso3166">BA</div>
                     <div class="prefix-number">+387</div>
-                    <div class="country">Bosnia & Herzegovina</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@BA</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">BD</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("BD")' >
+                    <div class="iso3166">BD</div>
                     <div class="prefix-number">+880</div>
-                    <div class="country">Bangladesh</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@BD</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">BE</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("BE")' >
+                    <div class="iso3166">BE</div>
                     <div class="prefix-number">+32</div>
-                    <div class="country">Belgium</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@BE</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">BF</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("BF")' >
+                    <div class="iso3166">BF</div>
                     <div class="prefix-number">+226</div>
-                    <div class="country">Burkina Faso</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@BF</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">BG</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("BG")' >
+                    <div class="iso3166">BG</div>
                     <div class="prefix-number">+359</div>
-                    <div class="country">Bulgaria</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@BG</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">BH</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("BH")' >
+                    <div class="iso3166">BH</div>
                     <div class="prefix-number">+973</div>
-                    <div class="country">Bahrain</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@BH</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">BI</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("BI")' >
+                    <div class="iso3166">BI</div>
                     <div class="prefix-number">+257</div>
-                    <div class="country">Burundi</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@BI</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">BJ</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("BJ")' >
+                    <div class="iso3166">BJ</div>
                     <div class="prefix-number">+229</div>
-                    <div class="country">Benin</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@BJ</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">GP</div>
-                    <div class="prefix-number">+590</div>
-                    <div class="country">Guadeloupe</div>
-                </div>
-                <div class="item">
-                    <div class="iso6311">BN</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("BN")' >
+                    <div class="iso3166">BN</div>
                     <div class="prefix-number">+673</div>
-                    <div class="country">Brunei</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@BN</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">BO</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("BO")' >
+                    <div class="iso3166">BO</div>
                     <div class="prefix-number">+591</div>
-                    <div class="country">Bolivia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@BO</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">CW</div>
-                    <div class="prefix-number">+599</div>
-                    <div class="country">Curaçao</div>
-                </div>
-                <div class="item">
-                    <div class="iso6311">BR</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("BR")' >
+                    <div class="iso3166">BR</div>
                     <div class="prefix-number">+55</div>
-                    <div class="country">Brazil</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@BR</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">BT</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("BT")' >
+                    <div class="iso3166">BT</div>
                     <div class="prefix-number">+975</div>
-                    <div class="country">Bhutan</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@BT</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">BW</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("BW")' >
+                    <div class="iso3166">BW</div>
                     <div class="prefix-number">+267</div>
-                    <div class="country">Botswana</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@BW</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">BY</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("BY")' >
+                    <div class="iso3166">BY</div>
                     <div class="prefix-number">+375</div>
-                    <div class="country">Belarus</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@BY</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">BZ</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("BZ")' >
+                    <div class="iso3166">BZ</div>
                     <div class="prefix-number">+501</div>
-                    <div class="country">Belize</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@BZ</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">CD</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("CD")' >
+                    <div class="iso3166">CD</div>
                     <div class="prefix-number">+243</div>
-                    <div class="country">Congo (DRC)</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@CD</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">CF</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("CF")' >
+                    <div class="iso3166">CF</div>
                     <div class="prefix-number">+236</div>
-                    <div class="country">Central African Republic</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@CF</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">CG</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("CG")' >
+                    <div class="iso3166">CG</div>
                     <div class="prefix-number">+242</div>
-                    <div class="country">Congo</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@CG</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">CH</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("CH")' >
+                    <div class="iso3166">CH</div>
                     <div class="prefix-number">+41</div>
-                    <div class="country">Switzerland</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@CH</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">CI</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("CI")' >
+                    <div class="iso3166">CI</div>
                     <div class="prefix-number">+225</div>
-                    <div class="country">Côte d'Ivoire</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@CI</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">CK</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("CK")' >
+                    <div class="iso3166">CK</div>
                     <div class="prefix-number">+682</div>
-                    <div class="country">Cook Islands</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@CK</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">CL</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("CL")' >
+                    <div class="iso3166">CL</div>
                     <div class="prefix-number">+56</div>
-                    <div class="country">Chile</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@CL</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">CN</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("CN")' >
+                    <div class="iso3166">CN</div>
                     <div class="prefix-number">+86</div>
-                    <div class="country">China</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@CN</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">CO</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("CO")' >
+                    <div class="iso3166">CO</div>
                     <div class="prefix-number">+57</div>
-                    <div class="country">Colombia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@CO</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">CR</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("CR")' >
+                    <div class="iso3166">CR</div>
                     <div class="prefix-number">+506</div>
-                    <div class="country">Costa Rica</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@CR</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">CU</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("CU")' >
+                    <div class="iso3166">CU</div>
                     <div class="prefix-number">+53</div>
-                    <div class="country">Cuba</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@CU</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">CV</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("CV")' >
+                    <div class="iso3166">CV</div>
                     <div class="prefix-number">+238</div>
-                    <div class="country">Cabo Verde</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@CV</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">CY</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("CW")' >
+                    <div class="iso3166">CW</div>
+                    <div class="prefix-number">+599</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@CW</div>
+                </div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("CY")' >
+                    <div class="iso3166">CY</div>
                     <div class="prefix-number">+357</div>
-                    <div class="country">Cyprus</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@CY</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">CZ</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("CZ")' >
+                    <div class="iso3166">CZ</div>
                     <div class="prefix-number">+420</div>
-                    <div class="country">Czechia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@CZ</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">DE</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("DE")' >
+                    <div class="iso3166">DE</div>
                     <div class="prefix-number">+49</div>
-                    <div class="country">Germany</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@DE</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">DJ</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("DJ")' >
+                    <div class="iso3166">DJ</div>
                     <div class="prefix-number">+253</div>
-                    <div class="country">Djibouti</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@DJ</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">DK</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("DK")' >
+                    <div class="iso3166">DK</div>
                     <div class="prefix-number">+45</div>
-                    <div class="country">Denmark</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@DK</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">DZ</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("DZ")' >
+                    <div class="iso3166">DZ</div>
                     <div class="prefix-number">+213</div>
-                    <div class="country">Algeria</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@DZ</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">EC</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("EC")' >
+                    <div class="iso3166">EC</div>
                     <div class="prefix-number">+593</div>
-                    <div class="country">Ecuador</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@EC</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">EE</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("EE")' >
+                    <div class="iso3166">EE</div>
                     <div class="prefix-number">+372</div>
-                    <div class="country">Estonia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@EE</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">EG</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("EG")' >
+                    <div class="iso3166">EG</div>
                     <div class="prefix-number">+20</div>
-                    <div class="country">Egypt</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@EG</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MA</div>
-                    <div class="prefix-number">+212</div>
-                    <div class="country">Morocco</div>
-                </div>
-                <div class="item">
-                    <div class="iso6311">ER</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("ER")' >
+                    <div class="iso3166">ER</div>
                     <div class="prefix-number">+291</div>
-                    <div class="country">Eritrea</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@ER</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">ES</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("ES")' >
+                    <div class="iso3166">ES</div>
                     <div class="prefix-number">+34</div>
-                    <div class="country">Spain</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@ES</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">ET</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("ET")' >
+                    <div class="iso3166">ET</div>
                     <div class="prefix-number">+251</div>
-                    <div class="country">Ethiopia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@ET</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">FJ</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("FI")' >
+                    <div class="iso3166">FI</div>
+                    <div class="prefix-number">+358</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@FI</div>
+                </div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("FJ")' >
+                    <div class="iso3166">FJ</div>
                     <div class="prefix-number">+679</div>
-                    <div class="country">Fiji</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@FJ</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">FK</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("FK")' >
+                    <div class="iso3166">FK</div>
                     <div class="prefix-number">+500</div>
-                    <div class="country">Falkland Islands</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@FK</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">FM</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("FM")' >
+                    <div class="iso3166">FM</div>
                     <div class="prefix-number">+691</div>
-                    <div class="country">Micronesia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@FM</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">FO</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("FO")' >
+                    <div class="iso3166">FO</div>
                     <div class="prefix-number">+298</div>
-                    <div class="country">Faroe Islands</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@FO</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">FR</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("FR")' >
+                    <div class="iso3166">FR</div>
                     <div class="prefix-number">+33</div>
-                    <div class="country">France</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@FR</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">GA</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("GA")' >
+                    <div class="iso3166">GA</div>
                     <div class="prefix-number">+241</div>
-                    <div class="country">Gabon</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@GA</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">GB</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("GB")' >
+                    <div class="iso3166">GB</div>
                     <div class="prefix-number">+44</div>
-                    <div class="country">United Kingdom</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@GB</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">GE</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("GE")' >
+                    <div class="iso3166">GE</div>
                     <div class="prefix-number">+995</div>
-                    <div class="country">Georgia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@GE</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">GF</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("GF")' >
+                    <div class="iso3166">GF</div>
                     <div class="prefix-number">+594</div>
-                    <div class="country">French Guiana</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@GF</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">GH</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("GH")' >
+                    <div class="iso3166">GH</div>
                     <div class="prefix-number">+233</div>
-                    <div class="country">Ghana</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@GH</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">GI</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("GI")' >
+                    <div class="iso3166">GI</div>
                     <div class="prefix-number">+350</div>
-                    <div class="country">Gibraltar</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@GI</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">GL</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("GL")' >
+                    <div class="iso3166">GL</div>
                     <div class="prefix-number">+299</div>
-                    <div class="country">Greenland</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@GL</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">GM</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("GM")' >
+                    <div class="iso3166">GM</div>
                     <div class="prefix-number">+220</div>
-                    <div class="country">Gambia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@GM</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">GN</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("GN")' >
+                    <div class="iso3166">GN</div>
                     <div class="prefix-number">+224</div>
-                    <div class="country">Guinea</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@GN</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">GQ</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("GP")' >
+                    <div class="iso3166">GP</div>
+                    <div class="prefix-number">+590</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@GP</div>
+                </div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("GQ")' >
+                    <div class="iso3166">GQ</div>
                     <div class="prefix-number">+240</div>
-                    <div class="country">Equatorial Guinea</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@GQ</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">GR</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("GR")' >
+                    <div class="iso3166">GR</div>
                     <div class="prefix-number">+30</div>
-                    <div class="country">Greece</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@GR</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">GT</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("GT")' >
+                    <div class="iso3166">GT</div>
                     <div class="prefix-number">+502</div>
-                    <div class="country">Guatemala</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@GT</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">GW</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("GW")' >
+                    <div class="iso3166">GW</div>
                     <div class="prefix-number">+245</div>
-                    <div class="country">Guinea-Bissau</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@GW</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">GY</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("GY")' >
+                    <div class="iso3166">GY</div>
                     <div class="prefix-number">+592</div>
-                    <div class="country">Guyana</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@GY</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">HK</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("HK")' >
+                    <div class="iso3166">HK</div>
                     <div class="prefix-number">+852</div>
-                    <div class="country">Hong Kong SAR</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@HK</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">HN</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("HN")' >
+                    <div class="iso3166">HN</div>
                     <div class="prefix-number">+504</div>
-                    <div class="country">Honduras</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@HN</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">HR</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("HR")' >
+                    <div class="iso3166">HR</div>
                     <div class="prefix-number">+385</div>
-                    <div class="country">Croatia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@HR</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">HT</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("HT")' >
+                    <div class="iso3166">HT</div>
                     <div class="prefix-number">+509</div>
-                    <div class="country">Haiti</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@HT</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">HU</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("HU")' >
+                    <div class="iso3166">HU</div>
                     <div class="prefix-number">+36</div>
-                    <div class="country">Hungary</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@HU</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">ID</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("ID")' >
+                    <div class="iso3166">ID</div>
                     <div class="prefix-number">+62</div>
-                    <div class="country">Indonesia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@ID</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">IE</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("IE")' >
+                    <div class="iso3166">IE</div>
                     <div class="prefix-number">+353</div>
-                    <div class="country">Ireland</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@IE</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">IL</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("IL")' >
+                    <div class="iso3166">IL</div>
                     <div class="prefix-number">+972</div>
-                    <div class="country">Israel</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@IL</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">IN</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("IN")' >
+                    <div class="iso3166">IN</div>
                     <div class="prefix-number">+91</div>
-                    <div class="country">India</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@IN</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">IO</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("IO")' >
+                    <div class="iso3166">IO</div>
                     <div class="prefix-number">+246</div>
-                    <div class="country">British Indian Ocean Territory</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@IO</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">IQ</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("IQ")' >
+                    <div class="iso3166">IQ</div>
                     <div class="prefix-number">+964</div>
-                    <div class="country">Iraq</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@IQ</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">IR</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("IR")' >
+                    <div class="iso3166">IR</div>
                     <div class="prefix-number">+98</div>
-                    <div class="country">Iran</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@IR</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">IS</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("IS")' >
+                    <div class="iso3166">IS</div>
                     <div class="prefix-number">+354</div>
-                    <div class="country">Iceland</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@IS</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">IT</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("IT")' >
+                    <div class="iso3166">IT</div>
                     <div class="prefix-number">+39</div>
-                    <div class="country">Italy</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@IT</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">JO</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("JO")' >
+                    <div class="iso3166">JO</div>
                     <div class="prefix-number">+962</div>
-                    <div class="country">Jordan</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@JO</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">JP</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("JP")' >
+                    <div class="iso3166">JP</div>
                     <div class="prefix-number">+81</div>
-                    <div class="country">Japan</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@JP</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">KE</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("KE")' >
+                    <div class="iso3166">KE</div>
                     <div class="prefix-number">+254</div>
-                    <div class="country">Kenya</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@KE</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">KG</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("KG")' >
+                    <div class="iso3166">KG</div>
                     <div class="prefix-number">+996</div>
-                    <div class="country">Kyrgyzstan</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@KG</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">KH</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("KH")' >
+                    <div class="iso3166">KH</div>
                     <div class="prefix-number">+855</div>
-                    <div class="country">Cambodia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@KH</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">KI</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("KI")' >
+                    <div class="iso3166">KI</div>
                     <div class="prefix-number">+686</div>
-                    <div class="country">Kiribati</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@KI</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">KM</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("KM")' >
+                    <div class="iso3166">KM</div>
                     <div class="prefix-number">+269</div>
-                    <div class="country">Comoros</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@KM</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">KP</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("KP")' >
+                    <div class="iso3166">KP</div>
                     <div class="prefix-number">+850</div>
-                    <div class="country">North Korea</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@KP</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">KR</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("KR")' >
+                    <div class="iso3166">KR</div>
                     <div class="prefix-number">+82</div>
-                    <div class="country">Korea</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@KR</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">KW</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("KW")' >
+                    <div class="iso3166">KW</div>
                     <div class="prefix-number">+965</div>
-                    <div class="country">Kuwait</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@KW</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">RU</div>
-                    <div class="prefix-number">+7</div>
-                    <div class="country">Russia</div>
-                </div>
-                <div class="item">
-                    <div class="iso6311">LA</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("LA")' >
+                    <div class="iso3166">LA</div>
                     <div class="prefix-number">+856</div>
-                    <div class="country">Laos</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@LA</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">LB</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("LB")' >
+                    <div class="iso3166">LB</div>
                     <div class="prefix-number">+961</div>
-                    <div class="country">Lebanon</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@LB</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">LI</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("LI")' >
+                    <div class="iso3166">LI</div>
                     <div class="prefix-number">+423</div>
-                    <div class="country">Liechtenstein</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@LI</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">LK</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("LK")' >
+                    <div class="iso3166">LK</div>
                     <div class="prefix-number">+94</div>
-                    <div class="country">Sri Lanka</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@LK</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">LR</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("LR")' >
+                    <div class="iso3166">LR</div>
                     <div class="prefix-number">+231</div>
-                    <div class="country">Liberia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@LR</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">LS</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("LS")' >
+                    <div class="iso3166">LS</div>
                     <div class="prefix-number">+266</div>
-                    <div class="country">Lesotho</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@LS</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">LT</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("LT")' >
+                    <div class="iso3166">LT</div>
                     <div class="prefix-number">+370</div>
-                    <div class="country">Lithuania</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@LT</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">LU</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("LU")' >
+                    <div class="iso3166">LU</div>
                     <div class="prefix-number">+352</div>
-                    <div class="country">Luxembourg</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@LU</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">LV</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("LV")' >
+                    <div class="iso3166">LV</div>
                     <div class="prefix-number">+371</div>
-                    <div class="country">Latvia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@LV</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">LY</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("LY")' >
+                    <div class="iso3166">LY</div>
                     <div class="prefix-number">+218</div>
-                    <div class="country">Libya</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@LY</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MC</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MA")' >
+                    <div class="iso3166">MA</div>
+                    <div class="prefix-number">+212</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MA</div>
+                </div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MC")' >
+                    <div class="iso3166">MC</div>
                     <div class="prefix-number">+377</div>
-                    <div class="country">Monaco</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MC</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MD</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MD")' >
+                    <div class="iso3166">MD</div>
                     <div class="prefix-number">+373</div>
-                    <div class="country">Moldova</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MD</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">ME</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("ME")' >
+                    <div class="iso3166">ME</div>
                     <div class="prefix-number">+382</div>
-                    <div class="country">Montenegro</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@ME</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MG</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MG")' >
+                    <div class="iso3166">MG</div>
                     <div class="prefix-number">+261</div>
-                    <div class="country">Madagascar</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MG</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MH</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MH")' >
+                    <div class="iso3166">MH</div>
                     <div class="prefix-number">+692</div>
-                    <div class="country">Marshall Islands</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MH</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MK</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MK")' >
+                    <div class="iso3166">MK</div>
                     <div class="prefix-number">+389</div>
-                    <div class="country">North Macedonia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MK</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">ML</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("ML")' >
+                    <div class="iso3166">ML</div>
                     <div class="prefix-number">+223</div>
-                    <div class="country">Mali</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@ML</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MM</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MM")' >
+                    <div class="iso3166">MM</div>
                     <div class="prefix-number">+95</div>
-                    <div class="country">Myanmar</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MM</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MN</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MN")' >
+                    <div class="iso3166">MN</div>
                     <div class="prefix-number">+976</div>
-                    <div class="country">Mongolia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MN</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MO</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MO")' >
+                    <div class="iso3166">MO</div>
                     <div class="prefix-number">+853</div>
-                    <div class="country">Macao SAR</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MO</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MQ</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MQ")' >
+                    <div class="iso3166">MQ</div>
                     <div class="prefix-number">+596</div>
-                    <div class="country">Martinique</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MQ</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MR</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MR")' >
+                    <div class="iso3166">MR</div>
                     <div class="prefix-number">+222</div>
-                    <div class="country">Mauritania</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MR</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MT</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MT")' >
+                    <div class="iso3166">MT</div>
                     <div class="prefix-number">+356</div>
-                    <div class="country">Malta</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MT</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MU</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MU")' >
+                    <div class="iso3166">MU</div>
                     <div class="prefix-number">+230</div>
-                    <div class="country">Mauritius</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MU</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MV</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MV")' >
+                    <div class="iso3166">MV</div>
                     <div class="prefix-number">+960</div>
-                    <div class="country">Maldives</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MV</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MW</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MW")' >
+                    <div class="iso3166">MW</div>
                     <div class="prefix-number">+265</div>
-                    <div class="country">Malawi</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MW</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MX</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MX")' >
+                    <div class="iso3166">MX</div>
                     <div class="prefix-number">+52</div>
-                    <div class="country">Mexico</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MX</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MY</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MY")' >
+                    <div class="iso3166">MY</div>
                     <div class="prefix-number">+60</div>
-                    <div class="country">Malaysia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MY</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">MZ</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("MZ")' >
+                    <div class="iso3166">MZ</div>
                     <div class="prefix-number">+258</div>
-                    <div class="country">Mozambique</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@MZ</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">NA</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("NA")' >
+                    <div class="iso3166">NA</div>
                     <div class="prefix-number">+264</div>
-                    <div class="country">Namibia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@NA</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">NC</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("NC")' >
+                    <div class="iso3166">NC</div>
                     <div class="prefix-number">+687</div>
-                    <div class="country">New Caledonia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@NC</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">NE</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("NE")' >
+                    <div class="iso3166">NE</div>
                     <div class="prefix-number">+227</div>
-                    <div class="country">Niger</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@NE</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">NF</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("NF")' >
+                    <div class="iso3166">NF</div>
                     <div class="prefix-number">+672</div>
-                    <div class="country">Norfolk Island</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@NF</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">NG</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("NG")' >
+                    <div class="iso3166">NG</div>
                     <div class="prefix-number">+234</div>
-                    <div class="country">Nigeria</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@NG</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">NI</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("NI")' >
+                    <div class="iso3166">NI</div>
                     <div class="prefix-number">+505</div>
-                    <div class="country">Nicaragua</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@NI</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">NL</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("NL")' >
+                    <div class="iso3166">NL</div>
                     <div class="prefix-number">+31</div>
-                    <div class="country">Netherlands</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@NL</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">NO</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("NO")' >
+                    <div class="iso3166">NO</div>
                     <div class="prefix-number">+47</div>
-                    <div class="country">Norway</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@NO</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">NP</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("NP")' >
+                    <div class="iso3166">NP</div>
                     <div class="prefix-number">+977</div>
-                    <div class="country">Nepal</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@NP</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">NR</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("NR")' >
+                    <div class="iso3166">NR</div>
                     <div class="prefix-number">+674</div>
-                    <div class="country">Nauru</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@NR</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">NU</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("NU")' >
+                    <div class="iso3166">NU</div>
                     <div class="prefix-number">+683</div>
-                    <div class="country">Niue</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@NU</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">NZ</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("NZ")' >
+                    <div class="iso3166">NZ</div>
                     <div class="prefix-number">+64</div>
-                    <div class="country">New Zealand</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@NZ</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">OM</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("OM")' >
+                    <div class="iso3166">OM</div>
                     <div class="prefix-number">+968</div>
-                    <div class="country">Oman</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@OM</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">PA</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("PA")' >
+                    <div class="iso3166">PA</div>
                     <div class="prefix-number">+507</div>
-                    <div class="country">Panama</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@PA</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">PE</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("PE")' >
+                    <div class="iso3166">PE</div>
                     <div class="prefix-number">+51</div>
-                    <div class="country">Peru</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@PE</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">PF</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("PF")' >
+                    <div class="iso3166">PF</div>
                     <div class="prefix-number">+689</div>
-                    <div class="country">French Polynesia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@PF</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">PG</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("PG")' >
+                    <div class="iso3166">PG</div>
                     <div class="prefix-number">+675</div>
-                    <div class="country">Papua New Guinea</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@PG</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">PH</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("PH")' >
+                    <div class="iso3166">PH</div>
                     <div class="prefix-number">+63</div>
-                    <div class="country">Philippines</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@PH</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">PK</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("PK")' >
+                    <div class="iso3166">PK</div>
                     <div class="prefix-number">+92</div>
-                    <div class="country">Pakistan</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@PK</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">PL</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("PL")' >
+                    <div class="iso3166">PL</div>
                     <div class="prefix-number">+48</div>
-                    <div class="country">Poland</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@PL</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">PM</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("PM")' >
+                    <div class="iso3166">PM</div>
                     <div class="prefix-number">+508</div>
-                    <div class="country">St. Pierre & Miquelon</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@PM</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">PS</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("PS")' >
+                    <div class="iso3166">PS</div>
                     <div class="prefix-number">+970</div>
-                    <div class="country">State of Palestine</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@PS</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">PT</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("PT")' >
+                    <div class="iso3166">PT</div>
                     <div class="prefix-number">+351</div>
-                    <div class="country">Portugal</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@PT</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">PW</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("PW")' >
+                    <div class="iso3166">PW</div>
                     <div class="prefix-number">+680</div>
-                    <div class="country">Palau</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@PW</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">PY</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("PY")' >
+                    <div class="iso3166">PY</div>
                     <div class="prefix-number">+595</div>
-                    <div class="country">Paraguay</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@PY</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">QA</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("QA")' >
+                    <div class="iso3166">QA</div>
                     <div class="prefix-number">+974</div>
-                    <div class="country">Qatar</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@QA</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">RE</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("RE")' >
+                    <div class="iso3166">RE</div>
                     <div class="prefix-number">+262</div>
-                    <div class="country">Réunion</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@RE</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">RO</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("RO")' >
+                    <div class="iso3166">RO</div>
                     <div class="prefix-number">+40</div>
-                    <div class="country">Romania</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@RO</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">RS</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("RS")' >
+                    <div class="iso3166">RS</div>
                     <div class="prefix-number">+381</div>
-                    <div class="country">Serbia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@RS</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">RW</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("RU")' >
+                    <div class="iso3166">RU</div>
+                    <div class="prefix-number">+7</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@RU</div>
+                </div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("RW")' >
+                    <div class="iso3166">RW</div>
                     <div class="prefix-number">+250</div>
-                    <div class="country">Rwanda</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@RW</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SA</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SA")' >
+                    <div class="iso3166">SA</div>
                     <div class="prefix-number">+966</div>
-                    <div class="country">Saudi Arabia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SA</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SB</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SB")' >
+                    <div class="iso3166">SB</div>
                     <div class="prefix-number">+677</div>
-                    <div class="country">Solomon Islands</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SB</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SC</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SC")' >
+                    <div class="iso3166">SC</div>
                     <div class="prefix-number">+248</div>
-                    <div class="country">Seychelles</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SC</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SD</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SD")' >
+                    <div class="iso3166">SD</div>
                     <div class="prefix-number">+249</div>
-                    <div class="country">Sudan</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SD</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SE</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SE")' >
+                    <div class="iso3166">SE</div>
                     <div class="prefix-number">+46</div>
-                    <div class="country">Sweden</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SE</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SG</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SG")' >
+                    <div class="iso3166">SG</div>
                     <div class="prefix-number">+65</div>
-                    <div class="country">Singapore</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SG</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SH</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SH")' >
+                    <div class="iso3166">SH</div>
                     <div class="prefix-number">+290</div>
-                    <div class="country">St Helena, Ascension, Tristan da Cunha</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SH</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SI</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SI")' >
+                    <div class="iso3166">SI</div>
                     <div class="prefix-number">+386</div>
-                    <div class="country">Slovenia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SI</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SK</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SK")' >
+                    <div class="iso3166">SK</div>
                     <div class="prefix-number">+421</div>
-                    <div class="country">Slovakia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SK</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SL</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SL")' >
+                    <div class="iso3166">SL</div>
                     <div class="prefix-number">+232</div>
-                    <div class="country">Sierra Leone</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SL</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SM</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SM")' >
+                    <div class="iso3166">SM</div>
                     <div class="prefix-number">+378</div>
-                    <div class="country">San Marino</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SM</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SN</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SN")' >
+                    <div class="iso3166">SN</div>
                     <div class="prefix-number">+221</div>
-                    <div class="country">Senegal</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SN</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SO</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SO")' >
+                    <div class="iso3166">SO</div>
                     <div class="prefix-number">+252</div>
-                    <div class="country">Somalia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SO</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SR</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SR")' >
+                    <div class="iso3166">SR</div>
                     <div class="prefix-number">+597</div>
-                    <div class="country">Suriname</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SR</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SS</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SS")' >
+                    <div class="iso3166">SS</div>
                     <div class="prefix-number">+211</div>
-                    <div class="country">South Sudan</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SS</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">ST</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("ST")' >
+                    <div class="iso3166">ST</div>
                     <div class="prefix-number">+239</div>
-                    <div class="country">São Tomé & Príncipe</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@ST</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SV</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SV")' >
+                    <div class="iso3166">SV</div>
                     <div class="prefix-number">+503</div>
-                    <div class="country">El Salvador</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SV</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SY</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SY")' >
+                    <div class="iso3166">SY</div>
                     <div class="prefix-number">+963</div>
-                    <div class="country">Syria</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SY</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">SZ</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("SZ")' >
+                    <div class="iso3166">SZ</div>
                     <div class="prefix-number">+268</div>
-                    <div class="country">Eswatini</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@SZ</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">TD</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("TD")' >
+                    <div class="iso3166">TD</div>
                     <div class="prefix-number">+235</div>
-                    <div class="country">Chad</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@TD</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">TG</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("TG")' >
+                    <div class="iso3166">TG</div>
                     <div class="prefix-number">+228</div>
-                    <div class="country">Togo</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@TG</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">TH</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("TH")' >
+                    <div class="iso3166">TH</div>
                     <div class="prefix-number">+66</div>
-                    <div class="country">Thailand</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@TH</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">TJ</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("TJ")' >
+                    <div class="iso3166">TJ</div>
                     <div class="prefix-number">+992</div>
-                    <div class="country">Tajikistan</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@TJ</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">TK</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("TK")' >
+                    <div class="iso3166">TK</div>
                     <div class="prefix-number">+690</div>
-                    <div class="country">Tokelau</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@TK</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">TL</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("TL")' >
+                    <div class="iso3166">TL</div>
                     <div class="prefix-number">+670</div>
-                    <div class="country">Timor-Leste</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@TL</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">TM</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("TM")' >
+                    <div class="iso3166">TM</div>
                     <div class="prefix-number">+993</div>
-                    <div class="country">Turkmenistan</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@TM</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">TN</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("TN")' >
+                    <div class="iso3166">TN</div>
                     <div class="prefix-number">+216</div>
-                    <div class="country">Tunisia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@TN</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">TO</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("TO")' >
+                    <div class="iso3166">TO</div>
                     <div class="prefix-number">+676</div>
-                    <div class="country">Tonga</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@TO</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">TR</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("TR")' >
+                    <div class="iso3166">TR</div>
                     <div class="prefix-number">+90</div>
-                    <div class="country">Turkey</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@TR</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">TV</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("TV")' >
+                    <div class="iso3166">TV</div>
                     <div class="prefix-number">+688</div>
-                    <div class="country">Tuvalu</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@TV</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">TW</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("TW")' >
+                    <div class="iso3166">TW</div>
                     <div class="prefix-number">+886</div>
-                    <div class="country">Taiwan</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@TW</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">TZ</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("TZ")' >
+                    <div class="iso3166">TZ</div>
                     <div class="prefix-number">+255</div>
-                    <div class="country">Tanzania</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@TZ</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">UA</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("UA")' >
+                    <div class="iso3166">UA</div>
                     <div class="prefix-number">+380</div>
-                    <div class="country">Ukraine</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@UA</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">UG</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("UG")' >
+                    <div class="iso3166">UG</div>
                     <div class="prefix-number">+256</div>
-                    <div class="country">Uganda</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@UG</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">UY</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("US")' >
+                    <div class="iso3166">US</div>
+                    <div class="prefix-number">+1</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@US</div>
+                </div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("UY")' >
+                    <div class="iso3166">UY</div>
                     <div class="prefix-number">+598</div>
-                    <div class="country">Uruguay</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@UY</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">UZ</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("UZ")' >
+                    <div class="iso3166">UZ</div>
                     <div class="prefix-number">+998</div>
-                    <div class="country">Uzbekistan</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@UZ</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">VA</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("VA")' >
+                    <div class="iso3166">VA</div>
                     <div class="prefix-number">+379</div>
-                    <div class="country">Vatican City</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@VA</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">VE</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("VE")' >
+                    <div class="iso3166">VE</div>
                     <div class="prefix-number">+58</div>
-                    <div class="country">Venezuela</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@VE</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">VN</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("VN")' >
+                    <div class="iso3166">VN</div>
                     <div class="prefix-number">+84</div>
-                    <div class="country">Vietnam</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@VN</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">VU</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("VU")' >
+                    <div class="iso3166">VU</div>
                     <div class="prefix-number">+678</div>
-                    <div class="country">Vanuatu</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@VU</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">WF</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("WF")' >
+                    <div class="iso3166">WF</div>
                     <div class="prefix-number">+681</div>
-                    <div class="country">Wallis & Futuna</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@WF</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">WS</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("WS")' >
+                    <div class="iso3166">WS</div>
                     <div class="prefix-number">+685</div>
-                    <div class="country">Samoa</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@WS</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">YE</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("YE")' >
+                    <div class="iso3166">YE</div>
                     <div class="prefix-number">+967</div>
-                    <div class="country">Yemen</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@YE</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">ZA</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("ZA")' >
+                    <div class="iso3166">ZA</div>
                     <div class="prefix-number">+27</div>
-                    <div class="country">South Africa</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@ZA</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">ZM</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("ZM")' >
+                    <div class="iso3166">ZM</div>
                     <div class="prefix-number">+260</div>
-                    <div class="country">Zambia</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@ZM</div>
                 </div>
-                <div class="item">
-                    <div class="iso6311">ZW</div>
+                <div class="item" @onclick='()=>this.HUIA.SetPrefix("ZW")' >
+                    <div class="iso3166">ZW</div>
                     <div class="prefix-number">+263</div>
-                    <div class="country">Zimbabwe</div>
+                    <div class="country" data-textalign-is-right="@(TextAlignIsRight?"true":"false")">@ZW</div>
                 </div>
             </div>
             <div class="cancel-choice-preifx" @onclick=this.HUIA.CancelToAuthentication>
@@ -1070,9 +1069,419 @@
     </UI_020b1bccContainer.Component>
 </span>
 @code{
+    [Parameter]
+    public string AD { get; set; } = null!;
+    [Parameter]
+    public string AE { get; set; } = null!;
+    [Parameter]
+    public string AF { get; set; } = null!;
+    [Parameter]
+    public string AL { get; set; } = null!;
+    [Parameter]
+    public string AM { get; set; } = null!;
+    [Parameter]
+    public string AO { get; set; } = null!;
+    [Parameter]
+    public string AR { get; set; } = null!;
+    [Parameter]
+    public string AT { get; set; } = null!;
+    [Parameter]
+    public string AU { get; set; } = null!;
+    [Parameter]
+    public string AW { get; set; } = null!;
+    [Parameter]
+    public string AZ { get; set; } = null!;
+    [Parameter]
+    public string BA { get; set; } = null!;
+    [Parameter]
+    public string BD { get; set; } = null!;
+    [Parameter]
+    public string BE { get; set; } = null!;
+    [Parameter]
+    public string BF { get; set; } = null!;
+    [Parameter]
+    public string BG { get; set; } = null!;
+    [Parameter]
+    public string BH { get; set; } = null!;
+    [Parameter]
+    public string BI { get; set; } = null!;
+    [Parameter]
+    public string BJ { get; set; } = null!;
+    [Parameter]
+    public string BN { get; set; } = null!;
+    [Parameter]
+    public string BO { get; set; } = null!;
+    [Parameter]
+    public string BR { get; set; } = null!;
+    [Parameter]
+    public string BT { get; set; } = null!;
+    [Parameter]
+    public string BW { get; set; } = null!;
+    [Parameter]
+    public string BY { get; set; } = null!;
+    [Parameter]
+    public string BZ { get; set; } = null!;
+    [Parameter]
+    public string CD { get; set; } = null!;
+    [Parameter]
+    public string CF { get; set; } = null!;
+    [Parameter]
+    public string CG { get; set; } = null!;
+    [Parameter]
+    public string CH { get; set; } = null!;
+    [Parameter]
+    public string CI { get; set; } = null!;
+    [Parameter]
+    public string CK { get; set; } = null!;
+    [Parameter]
+    public string CL { get; set; } = null!;
+    [Parameter]
+    public string CN { get; set; } = null!;
+    [Parameter]
+    public string CO { get; set; } = null!;
+    [Parameter]
+    public string CR { get; set; } = null!;
+    [Parameter]
+    public string CU { get; set; } = null!;
+    [Parameter]
+    public string CV { get; set; } = null!;
+    [Parameter]
+    public string CW { get; set; } = null!;
+    [Parameter]
+    public string CY { get; set; } = null!;
+    [Parameter]
+    public string CZ { get; set; } = null!;
+    [Parameter]
+    public string DE { get; set; } = null!;
+    [Parameter]
+    public string DJ { get; set; } = null!;
+    [Parameter]
+    public string DK { get; set; } = null!;
+    [Parameter]
+    public string DZ { get; set; } = null!;
+    [Parameter]
+    public string EC { get; set; } = null!;
+    [Parameter]
+    public string EE { get; set; } = null!;
+    [Parameter]
+    public string EG { get; set; } = null!;
+    [Parameter]
+    public string ER { get; set; } = null!;
+    [Parameter]
+    public string ES { get; set; } = null!;
+    [Parameter]
+    public string ET { get; set; } = null!;
+    [Parameter]
+    public string FI { get; set; } = null!;
+    [Parameter]
+    public string FJ { get; set; } = null!;
+    [Parameter]
+    public string FK { get; set; } = null!;
+    [Parameter]
+    public string FM { get; set; } = null!;
+    [Parameter]
+    public string FO { get; set; } = null!;
+    [Parameter]
+    public string FR { get; set; } = null!;
+    [Parameter]
+    public string GA { get; set; } = null!;
+    [Parameter]
+    public string GB { get; set; } = null!;
+    [Parameter]
+    public string GE { get; set; } = null!;
+    [Parameter]
+    public string GF { get; set; } = null!;
+    [Parameter]
+    public string GH { get; set; } = null!;
+    [Parameter]
+    public string GI { get; set; } = null!;
+    [Parameter]
+    public string GL { get; set; } = null!;
+    [Parameter]
+    public string GM { get; set; } = null!;
+    [Parameter]
+    public string GN { get; set; } = null!;
+    [Parameter]
+    public string GP { get; set; } = null!;
+    [Parameter]
+    public string GQ { get; set; } = null!;
+    [Parameter]
+    public string GR { get; set; } = null!;
+    [Parameter]
+    public string GT { get; set; } = null!;
+    [Parameter]
+    public string GW { get; set; } = null!;
+    [Parameter]
+    public string GY { get; set; } = null!;
+    [Parameter]
+    public string HK { get; set; } = null!;
+    [Parameter]
+    public string HN { get; set; } = null!;
+    [Parameter]
+    public string HR { get; set; } = null!;
+    [Parameter]
+    public string HT { get; set; } = null!;
+    [Parameter]
+    public string HU { get; set; } = null!;
+    [Parameter]
+    public string ID { get; set; } = null!;
+    [Parameter]
+    public string IE { get; set; } = null!;
+    [Parameter]
+    public string IL { get; set; } = null!;
+    [Parameter]
+    public string IN { get; set; } = null!;
+    [Parameter]
+    public string IO { get; set; } = null!;
+    [Parameter]
+    public string IQ { get; set; } = null!;
+    [Parameter]
+    public string IR { get; set; } = null!;
+    [Parameter]
+    public string IS { get; set; } = null!;
+    [Parameter]
+    public string IT { get; set; } = null!;
+    [Parameter]
+    public string JO { get; set; } = null!;
+    [Parameter]
+    public string JP { get; set; } = null!;
+    [Parameter]
+    public string KE { get; set; } = null!;
+    [Parameter]
+    public string KG { get; set; } = null!;
+    [Parameter]
+    public string KH { get; set; } = null!;
+    [Parameter]
+    public string KI { get; set; } = null!;
+    [Parameter]
+    public string KM { get; set; } = null!;
+    [Parameter]
+    public string KP { get; set; } = null!;
+    [Parameter]
+    public string KR { get; set; } = null!;
+    [Parameter]
+    public string KW { get; set; } = null!;
+    [Parameter]
+    public string LA { get; set; } = null!;
+    [Parameter]
+    public string LB { get; set; } = null!;
+    [Parameter]
+    public string LI { get; set; } = null!;
+    [Parameter]
+    public string LK { get; set; } = null!;
+    [Parameter]
+    public string LR { get; set; } = null!;
+    [Parameter]
+    public string LS { get; set; } = null!;
+    [Parameter]
+    public string LT { get; set; } = null!;
+    [Parameter]
+    public string LU { get; set; } = null!;
+    [Parameter]
+    public string LV { get; set; } = null!;
+    [Parameter]
+    public string LY { get; set; } = null!;
+    [Parameter]
+    public string MA { get; set; } = null!;
+    [Parameter]
+    public string MC { get; set; } = null!;
+    [Parameter]
+    public string MD { get; set; } = null!;
+    [Parameter]
+    public string ME { get; set; } = null!;
+    [Parameter]
+    public string MG { get; set; } = null!;
+    [Parameter]
+    public string MH { get; set; } = null!;
+    [Parameter]
+    public string MK { get; set; } = null!;
+    [Parameter]
+    public string ML { get; set; } = null!;
+    [Parameter]
+    public string MM { get; set; } = null!;
+    [Parameter]
+    public string MN { get; set; } = null!;
+    [Parameter]
+    public string MO { get; set; } = null!;
+    [Parameter]
+    public string MQ { get; set; } = null!;
+    [Parameter]
+    public string MR { get; set; } = null!;
+    [Parameter]
+    public string MT { get; set; } = null!;
+    [Parameter]
+    public string MU { get; set; } = null!;
+    [Parameter]
+    public string MV { get; set; } = null!;
+    [Parameter]
+    public string MW { get; set; } = null!;
+    [Parameter]
+    public string MX { get; set; } = null!;
+    [Parameter]
+    public string MY { get; set; } = null!;
+    [Parameter]
+    public string MZ { get; set; } = null!;
+    [Parameter]
+    public string NA { get; set; } = null!;
+    [Parameter]
+    public string NC { get; set; } = null!;
+    [Parameter]
+    public string NE { get; set; } = null!;
+    [Parameter]
+    public string NF { get; set; } = null!;
+    [Parameter]
+    public string NG { get; set; } = null!;
+    [Parameter]
+    public string NI { get; set; } = null!;
+    [Parameter]
+    public string NL { get; set; } = null!;
+    [Parameter]
+    public string NO { get; set; } = null!;
+    [Parameter]
+    public string NP { get; set; } = null!;
+    [Parameter]
+    public string NR { get; set; } = null!;
+    [Parameter]
+    public string NU { get; set; } = null!;
+    [Parameter]
+    public string NZ { get; set; } = null!;
+    [Parameter]
+    public string OM { get; set; } = null!;
+    [Parameter]
+    public string PA { get; set; } = null!;
+    [Parameter]
+    public string PE { get; set; } = null!;
+    [Parameter]
+    public string PF { get; set; } = null!;
+    [Parameter]
+    public string PG { get; set; } = null!;
+    [Parameter]
+    public string PH { get; set; } = null!;
+    [Parameter]
+    public string PK { get; set; } = null!;
+    [Parameter]
+    public string PL { get; set; } = null!;
+    [Parameter]
+    public string PM { get; set; } = null!;
+    [Parameter]
+    public string PS { get; set; } = null!;
+    [Parameter]
+    public string PT { get; set; } = null!;
+    [Parameter]
+    public string PW { get; set; } = null!;
+    [Parameter]
+    public string PY { get; set; } = null!;
+    [Parameter]
+    public string QA { get; set; } = null!;
+    [Parameter]
+    public string RE { get; set; } = null!;
+    [Parameter]
+    public string RO { get; set; } = null!;
+    [Parameter]
+    public string RS { get; set; } = null!;
+    [Parameter]
+    public string RU { get; set; } = null!;
+    [Parameter]
+    public string RW { get; set; } = null!;
+    [Parameter]
+    public string SA { get; set; } = null!;
+    [Parameter]
+    public string SB { get; set; } = null!;
+    [Parameter]
+    public string SC { get; set; } = null!;
+    [Parameter]
+    public string SD { get; set; } = null!;
+    [Parameter]
+    public string SE { get; set; } = null!;
+    [Parameter]
+    public string SG { get; set; } = null!;
+    [Parameter]
+    public string SH { get; set; } = null!;
+    [Parameter]
+    public string SI { get; set; } = null!;
+    [Parameter]
+    public string SK { get; set; } = null!;
+    [Parameter]
+    public string SL { get; set; } = null!;
+    [Parameter]
+    public string SM { get; set; } = null!;
+    [Parameter]
+    public string SN { get; set; } = null!;
+    [Parameter]
+    public string SO { get; set; } = null!;
+    [Parameter]
+    public string SR { get; set; } = null!;
+    [Parameter]
+    public string SS { get; set; } = null!;
+    [Parameter]
+    public string ST { get; set; } = null!;
+    [Parameter]
+    public string SV { get; set; } = null!;
+    [Parameter]
+    public string SY { get; set; } = null!;
+    [Parameter]
+    public string SZ { get; set; } = null!;
+    [Parameter]
+    public string TD { get; set; } = null!;
+    [Parameter]
+    public string TG { get; set; } = null!;
+    [Parameter]
+    public string TH { get; set; } = null!;
+    [Parameter]
+    public string TJ { get; set; } = null!;
+    [Parameter]
+    public string TK { get; set; } = null!;
+    [Parameter]
+    public string TL { get; set; } = null!;
+    [Parameter]
+    public string TM { get; set; } = null!;
+    [Parameter]
+    public string TN { get; set; } = null!;
+    [Parameter]
+    public string TO { get; set; } = null!;
+    [Parameter]
+    public string TR { get; set; } = null!;
+    [Parameter]
+    public string TV { get; set; } = null!;
+    [Parameter]
+    public string TW { get; set; } = null!;
+    [Parameter]
+    public string TZ { get; set; } = null!;
+    [Parameter]
+    public string UA { get; set; } = null!;
+    [Parameter]
+    public string UG { get; set; } = null!;
+    [Parameter]
+    public string US { get; set; } = null!;
+    [Parameter]
+    public string UY { get; set; } = null!;
+    [Parameter]
+    public string UZ { get; set; } = null!;
+    [Parameter]
+    public string VA { get; set; } = null!;
+    [Parameter]
+    public string VE { get; set; } = null!;
+    [Parameter]
+    public string VN { get; set; } = null!;
+    [Parameter]
+    public string VU { get; set; } = null!;
+    [Parameter]
+    public string WF { get; set; } = null!;
+    [Parameter]
+    public string WS { get; set; } = null!;
+    [Parameter]
+    public string YE { get; set; } = null!;
+    [Parameter]
+    public string ZA { get; set; } = null!;
+    [Parameter]
+    public string ZM { get; set; } = null!;
+    [Parameter]
+    public string ZW { get; set; } = null!;
+    [Parameter]
+    public bool TextAlignIsRight { get; set; } = false;
     protected override Task OnInitializedAsync()
     {
-        PM.Change += () => InvokeAsync(this.StateHasChanged);
+        _PM.Change += () => InvokeAsync(this.StateHasChanged);
         HUIA.Change += () => InvokeAsync(this.StateHasChanged);
         HUIA.ChangeToAuthentication();
         UIE.Change += () => InvokeAsync(this.StateHasChanged);

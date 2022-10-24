@@ -1,4 +1,5 @@
 ﻿using Helper_UI.authentication;
+using Product.infomation;
 
 namespace Helper_UI;
 public class Authentication
@@ -44,5 +45,12 @@ public class Authentication
 			this.ChangeAction?.Invoke();
 		}
 	}
-
+	public void SetPrefix(string ISO3166) {
+		this.UIE.ISO3166 = ISO3166;
+		this.ChangeToAuthentication();
+	}
+	private readonly UnitIdentification.Engine UIE;
+	public Authentication(UnitIdentification.Engine UIE) {
+		this.UIE = UIE;
+	}
 }
