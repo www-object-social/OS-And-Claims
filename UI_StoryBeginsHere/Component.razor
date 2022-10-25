@@ -1,12 +1,13 @@
 ﻿@inject Product.Infomation PI;
 @inject Progress.Manager PM;
 @inject UnitIdentification.Engine UIE;
-@if (PM.Status is Progress.manager.Status.Done) return;
+@if(PM.Status is Progress.manager.Status.Startup)
 @if (PI.Name is StandardInternal.product.infomation.Name.BadClaims or StandardInternal.product.infomation.Name.GoodClaims or StandardInternal.product.infomation.Name.MemoryClaims)
 {
     <audio controls autoplay style="visibility:hidden">
         <source src="_content/SharedLayout/startup.mp3" type="audio/mpeg">
     </audio>
+    @if(!Welcome)
     @switch (this.PI.Name)
     {
         case StandardInternal.product.infomation.Name.BadClaims:
@@ -18,7 +19,11 @@
         default:
             <div class="text mullermedium-600">@MemoryClaims</div>
             break;
-    }
+    }else {
+            <div class="text mullermedium-600">@Storage</div>
+        }
+
+
     <div class="emoji">@UseEmoji</div>
 }
 else
@@ -32,6 +37,9 @@ else
     public RenderFragment GoodClaims { get; set; } = null!;
     [Parameter]
     public RenderFragment MemoryClaims { get; set; } = null!;
+    [Parameter]
+    public RenderFragment Storage { get; set; } = null!;
+    private bool Welcome { get; set; } = false;
     private string UseEmoji = "";
     private string[] Emojis = new[] { "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "🥲", "😊", "😇", "🙂", "🙃", "😉", "😌", "😍", "🥰", "😘", "😗", "😙", "😚", "😋", "😛", "😝", "😜", "🤪", "🤨", "🧐", "🤓", "😎", "🥸", "🤩", "🥳", "😏", "😒", "😞", "😔", "😟", "😕", "🙁", "😣", "😖", "😫", "😩", "🥺", "😢", "😭", "😮‍💨", "😤", "😠", "😡", "🤬", "🤯", "😳", "🥵", "🥶", "😱", "😨", "😰", "😥", "😓", "🤗", "🤔", "🤭", "🤫", "🤥", "😶", "😐", "😑", "😬", "🙄", "😯", "😦", "😧", "😮", "😲", "🥱", "😴", "🤤", "😪", "😵", "😵‍💫", "🤐", "🥴", "🤢", "🤮", "🤧", "😷", "🤒", "🤕", "🤑", "🤠", "😈", "👿", "👹", "👺", "🤡", "💩", "👻", "💀", "☠️", "👽", "👾", "🤖", "🎃", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾", "❤️" };
     protected override async Task OnInitializedAsync()
@@ -46,10 +54,11 @@ else
             for (var i = 0; i < Emojis.Length; i++)
             {
                 UseEmoji = Emojis[new Random().Next(0, Emojis.Length - 1)] + Emojis[i] + Emojis[new Random().Next(0, Emojis.Length - 1)];
-               
+
                 this.StateHasChanged();
                 await Task.Delay(EmjoiTime);
             }
+            Welcome = true;
             UseEmoji = Emojis[new Random().Next(0, Emojis.Length - 1)];
             this.StateHasChanged();
             await Task.Delay(1500);

@@ -1,15 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="libphonenumbers-dotnet" Version="1.1.0" />
     <PackageReference Include="WhoisClient.NET" Version="4.0.0" />
   </ItemGroup>
-
 </Project>

@@ -6,6 +6,7 @@
 @if (PM.Status is Progress.manager.Status.Done)
 {
     <UI_Authentication.Component     
+    TextAlignIsRight=false
     AD="Andorra"
     AE="United Arab Emirates"
     AF="Afghanistan"
@@ -218,14 +219,16 @@
             <UI_StoryBeginsHere.Component>
                 <BadClaims>Dårlige minder fra fortiden</BadClaims>
                 <GoodClaims>Gode minder fra fortiden</GoodClaims>
-                <MemoryClaims>Historie fra dig</MemoryClaims>
+                <MemoryClaims>Alle handler om at forklare og fortællinger</MemoryClaims>
+                <Storage>Your story - Saved online</Storage>
             </UI_StoryBeginsHere.Component>
             break;
         default:
             <UI_StoryBeginsHere.Component>
                 <BadClaims>Bad memories from the past</BadClaims>
                 <GoodClaims>Good memories from the past</GoodClaims>
-                <MemoryClaims>Story from you</MemoryClaims>
+                <MemoryClaims>All are about explaining and stories</MemoryClaims>
+                <Storage>Din historie - Gemt online</Storage>
             </UI_StoryBeginsHere.Component>
             break;
     }
