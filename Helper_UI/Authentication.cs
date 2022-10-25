@@ -47,7 +47,7 @@ public class Authentication
 	}
 	public void SetPrefix(string ISO3166) {
 		this.UIE.ISO3166 = ISO3166;
-		this.ChangeToAuthentication();
+		this.CancelToAuthentication();
 	}
 	private readonly UnitIdentification.Engine UIE;
 	public Authentication(UnitIdentification.Engine UIE) {

@@ -24,7 +24,8 @@ public class Engine
         set {
             if (_ISO3166 == value) return;
             _ISO3166 = value;
-            this.ChangeAction?.Invoke();
+			_ = this.PPE.Hub.InvokeAsync("UI_I", value);
+			this.ChangeAction?.Invoke();
         }
     }
 
@@ -38,7 +39,7 @@ public class Engine
     private string _ISO639_1 =null!;
     public string ISO639_1 {
         get => _ISO639_1;
-        private set {
+        internal set {
             if(_ISO639_1==value) return;
             _ISO639_1 = value;
             this.ChangeAction?.Invoke();

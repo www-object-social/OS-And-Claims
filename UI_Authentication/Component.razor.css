@@ -55,10 +55,10 @@
 .connect {
     top:258px;
 }
-    .connect[data-writes="true"] {
-        top: 228px;
-    }
-    .start-condition {
+.connect[data-writes="true"] {
+top: 228px;
+}
+.start-condition {
         color: #fff;
         position: absolute;
         font-size: 7.5px;
