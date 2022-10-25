@@ -24,12 +24,14 @@ builder.Services.AddSession(x => {
 });
 builder.Services.AddHealthChecks();
 builder.Services.AddScoped<PongPing.IUnitIdentifications, ServerUnitIdentifications.Engine>();
+builder.Services.AddScoped<PongPing.IAuthentication, ServerAuthentication.Engine>();
 builder.Services.AddScoped<ServerToken.Engine>();
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
     app.UseWebAssemblyDebugging();
 else
     app.UseHsts();
+app.UseResponseCaching();
 app.UseSession();
 app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();

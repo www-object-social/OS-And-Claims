@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using ProgramData;
@@ -12,6 +13,8 @@ builder.Services.AddScoped(x => new Product.Infomation { Name = StandardInternal
     false
 #endif
 });
+builder.Services.AddResponseCaching();
+
 builder.Services.AddSignalR();
 builder.Services.AddCors(p => p.AddPolicy("corsapp", x => x.WithOrigins("*").AllowAnyMethod().AllowAnyHeader()));
 builder.Services.AddDbContextFactory<ServerStorages.OSAndClaimsContext>(x => x.UseSqlServer(new Func<string>(() => {if (!"database-connection".HaveFile()){"database-connection".WriteFile("Data Source");throw new Exception("Error we have created a file in %ProgramData% called database-connection.os-and-claims in which you can place Data source");}return "database-connection".ReadFile();})()).UseLazyLoadingProxies());
@@ -24,12 +27,14 @@ builder.Services.AddSession(x => {
 });
 builder.Services.AddHealthChecks();
 builder.Services.AddScoped<PongPing.IUnitIdentifications, ServerUnitIdentifications.Engine>();
+builder.Services.AddScoped<PongPing.IAuthentication, ServerAuthentication.Engine>();
 builder.Services.AddScoped<ServerToken.Engine>();
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
     app.UseWebAssemblyDebugging();
 else
     app.UseHsts();
+app.UseResponseCaching();
 app.UseSession();
 app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();

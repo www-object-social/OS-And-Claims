@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
 	<BlazorCacheBootResources>false</BlazorCacheBootResources>
     <TargetFramework>net6.0</TargetFramework>
@@ -10,6 +10,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PongPing\PongPing.csproj" />
+    <ProjectReference Include="..\..\ServerAuthentication\ServerAuthentication.csproj" />
     <ProjectReference Include="..\..\ServerStorages\ServerStorages.csproj" />
     <ProjectReference Include="..\..\ServerUnitIdentifications\ServerUnitIdentifications.csproj" />
     <ProjectReference Include="..\..\WebsiteBehind\WebsiteBehind.csproj" />

@@ -54,6 +54,7 @@ public class Engine
             this.ChangeAction?.Invoke();
         }
     }
+    private string Token = null!;
     public async Task Update() => await this.PPE.Hub.InvokeAsync("UI_V", await this.S.Read(), this.UI.ISO639_1, this.ISO3166, this.UI.Type, this.PI.Name, this.UI.BaseUtcOffsetTotalMinutes);
     private bool IsUpdateRuning = false;
     private async Task TimeUpdate() {
@@ -72,8 +73,10 @@ public class Engine
             this.PmT.InProcess();
 			this.ISO3166 = this.UI.ISO3166;
 			this.PPE.Hub.On<string, bool, string,string>("UI_S", async (token, anyuser, iSO639_1, iso3166) => {
-                await S.Save(token, anyuser ? StandardInternal.unitIdentification.storage.Type.Local : StandardInternal.unitIdentification.storage.Type.Temporarily);
-                this.ISO639_1 = iSO639_1;
+                if (token != null) 
+                    Token = token;
+				await S.Save(Token, anyuser ? StandardInternal.unitIdentification.storage.Type.Local : StandardInternal.unitIdentification.storage.Type.Temporarily);
+				this.ISO639_1 = iSO639_1;
                 this.AnyUser = anyuser;
                 this.ISO3166 = iso3166;
                 if(this.PmT.Status is not Progress.manager.Status.Done)
@@ -83,7 +86,6 @@ public class Engine
                     await TimeUpdate();
                 }
             });
-
             if (await this.S.Type() is StandardInternal.unitIdentification.storage.Type.None)
                 await this.PPE.Hub.InvokeAsync("UI_C", this.UI.ISO639_1, this.ISO3166, this.UI.Type, this.PI.Name, this.UI.BaseUtcOffsetTotalMinutes);
             else

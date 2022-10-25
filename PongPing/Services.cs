@@ -12,7 +12,7 @@ namespace PongPing;
 public class Services:Hub
 {
     private readonly IUnitIdentifications UI;
-
+    private readonly IAuthentication A;
 #pragma warning disable CS8604 // Possible null reference argument.
     public async Task UI_V(string Token, string ISO639_1, string ISO3166, StandardInternal.unit.infomation.Type SuiT, StandardInternal.product.infomation.Name SpiN, int BaseUtcOffsetTotalMinutes) => await UI.Verify(this.Context.ConnectionId,
 			  this.Context.Features.Get<IHttpContextFeature>()?.HttpContext.Connection.RemoteIpAddress,
@@ -34,7 +34,8 @@ public class Services:Hub
 #pragma warning restore CS8604 // Possible null reference argument.
         await base.OnDisconnectedAsync(exception);
     }
-    public Services(IUnitIdentifications UI) { 
+    public Services(IUnitIdentifications UI, IAuthentication A) { 
         this.UI = UI;
+        this.A = A;
     }
 }

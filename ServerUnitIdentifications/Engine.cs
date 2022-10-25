@@ -86,10 +86,9 @@ public class Engine:PongPing.IUnitIdentifications
         }
         return Task.CompletedTask;
     }
-    private Task GetID(string ConnectionID, string Host) {
+    private Task<Guid> GetID(string ConnectionID, string Host) {
 		using var Db = this.DbContextFactory.CreateDbContext();
-		_ID= Db.UnitConnections.Single(x => x.Host == Host && x.Value == ConnectionID).UnitIdentificationId;
-        return Task.CompletedTask;
+        return Task.FromResult(_ID = Db.UnitConnections.Single(x => x.Host == Host && x.Value == ConnectionID).UnitIdentificationId);
 	}
     public async Task ISO3166(string ConnectionID, string Host, string Value) {
         await GetID(ConnectionID, Host);
