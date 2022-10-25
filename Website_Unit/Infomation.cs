@@ -31,8 +31,6 @@ public class Infomation : Unit.IInfomation
 		var TestCountry = (await JSObject.InvokeAsync<string[]>("AttemptGetCountry")).Where(x => x.IndexOf("-") != -1);
 		if (TestCountry.Any())
 			this.ISO3166 = new RegionInfo(TestCountry.First()).TwoLetterISORegionName.ToUpper();
-	
-		Console.WriteLine(this.ISO3166);
 		var UA = await JSObject.InvokeAsync<string>("UserAgent");
 		if (UA.ToLower().Contains(" firefox/"))
 			Type = StandardInternal.unit.infomation.Type.Firefox;

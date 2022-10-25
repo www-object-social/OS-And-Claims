@@ -34,7 +34,6 @@ public class Engine
                 using var HttpClient = HttpClientFactory.CreateClient();
                 this.Hub = new HubConnectionBuilder().WithUrl($"https://{await HttpClient.GetStringAsync($"https://{Domain}/pongping/uniformresource/identifier/single")}/PongPing.Services").WithAutomaticReconnect().Build();
             }
-
             this.Hub.On<string>("Console", Console.WriteLine);
             this.Hub.Closed += Hub_Closed;
             await this.Hub.StartAsync();

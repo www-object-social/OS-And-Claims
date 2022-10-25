@@ -5,8 +5,12 @@
 @Body
 @if (PM.Status is Progress.manager.Status.Done)
 {
-    <UI_Authentication.Component     
+    <UI_Authentication.Component
     TextAlignIsRight=false
+    MobilePlaceholder="Mobile number"
+    Or="Or"
+    EmailPlaceholder="E-mail"
+    Connect="Connect"
     AD="Andorra"
     AE="United Arab Emirates"
     AF="Afghanistan"
@@ -210,8 +214,11 @@
     YE="Yemen"
     ZA="South Africa"
     ZM="Zambia"
-    ZW="Zimbabwe" />
-
+    ZW="Zimbabwe" >
+        <Questions>Do you have a free private account with us?</Questions>
+        <CreateAnAccount>No! Create an account</CreateAnAccount>
+        <StartCondition>I only click on 'No! Create an account.' because I am of legal age over 13 years.<br />OBJECT:SOCIAL is allowed to store a key in my device.<br />This also applies to the devices i will use to connect OBJECT:SOCIAL services.</StartCondition>
+    </UI_Authentication.Component>
 }
     @switch (this.UIE.ISO639_1)
     {

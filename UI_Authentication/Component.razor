@@ -9,29 +9,27 @@
             <img src="/_content/UI_Authentication/profil.png" class="profil" />
             <div class="left-line"></div>
             <div class="right-line"></div>
-                    <div class="questions">Do you have a free private account with us?</div>
-                    <div class="wee-will-make-one">No! Create an account</div>
-                    <div class="start-condition">I only click on 'No! Create an account.' because I am of legal age over 13 years.<br />OBJECT:SOCIAL is allowed to store a key in my device.<br/>This also applies to the devices i will use to connect OBJECT:SOCIAL services.</div>
-
+                    <div class="questions">@Questions</div>
+                    <div class="wee-will-make-one" @onclick=HUIA.CreateAnAccount>@CreateAnAccount</div>
+            <div class="start-condition">@StartCondition</div>
             <div class="right-line"></div>
             @switch(this.HUIA.Do){
                  case Helper_UI.authentication.Do.Authentication:
-                    <div class="connect" data-writes=@(this.HUIA.Mobile.Length != 0||this.HUIA.Email.Length != 0?"true":"false")>Connect</div>
-
+                    <div class="connect" data-writes=@(this.HUIA.Mobile.Length != 0||this.HUIA.Email.Length != 0?"true":"false")>@Connect</div>
                     @if (this.HUIA.Email.Length == 0)
                     {
                         <div class="mobile" data-writes=@(this.HUIA.Mobile.Length != 0?"true":"false")>
                             <div class="prefix" @onclick=this.HUIA.ChangeToPrefix>@UIE.ISO3166 +@_PI.Prefixs.Single(x=>x.ISO==UIE.ISO3166).Prefix </div>
-                            <input type="text" placeholder="Mobile number" @bind=HUIA.Mobile @bind:event="oninput" />
+                            <input type="text" placeholder=@MobilePlaceholder @bind=HUIA.Mobile @bind:event="oninput" />
                         </div>
                     }
                      @if (this.HUIA.Mobile.Length == 0){
                          <div class="email" data-writes=@(this.HUIA.Email.Length != 0?"true":"false")>
-                             <input type="text" placeholder="E-mail" @bind=HUIA.Email @bind:event="oninput" />
+                             <input type="text" placeholder=@EmailPlaceholder @bind=HUIA.Email @bind:event="oninput" />
                          </div>    
                      }                
                     @if (this.HUIA.Mobile.Length == 0&&this.HUIA.Email.Length==0) { 
-                        <div class="or">Or</div>
+                        <div class="or">@Or</div>
                     }
                     break;
                  case Helper_UI.authentication.Do.Prefix:   
@@ -1062,12 +1060,25 @@
             </div>
                     break;
             }
-
             <img src="/_content/UI_Authentication/security.png" class="security" />
         </Content>
     </UI_020b1bccContainer.Component>
 </span>
 @code{
+    [Parameter]
+    public RenderFragment StartCondition{ get; set; } = null!;
+    [Parameter]
+    public RenderFragment CreateAnAccount{ get; set; } = null!;
+    [Parameter]
+    public RenderFragment Questions{ get; set; } = null!;
+    [Parameter]
+    public string MobilePlaceholder{ get; set; } = null!;
+    [Parameter]
+    public string EmailPlaceholder{ get; set; } = null!;
+    [Parameter]
+    public string Or{ get; set; } = null!;
+    [Parameter]
+    public string Connect{ get; set; } = null!;
     [Parameter]
     public string AD { get; set; } = null!;
     [Parameter]
