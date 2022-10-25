@@ -23,6 +23,9 @@ public class Services:Hub
 		this.Context.Features.Get<IHttpContextFeature>()?.HttpContext.Request.Host.Value, ISO639_1, ISO3166, SuiT, SpiN, BaseUtcOffsetTotalMinutes);
     public async Task UI_I(string Value) => await UI.ISO3166(this.Context.ConnectionId, this.Context.Features.Get<IHttpContextFeature>()?.HttpContext.Request.Host.Value, Value);
 #pragma warning restore CS8604 // Possible null reference argument.
+    public async Task A_C() => await A.Create(this.Context.ConnectionId, this.Context.Features.Get<IHttpContextFeature>()?.HttpContext.Request.Host.Value);
+    
+
     public override Task OnConnectedAsync()
     {
         return base.OnConnectedAsync();

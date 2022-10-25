@@ -6,4 +6,5 @@ using System.Threading.Tasks;
 namespace PongPing;
 public interface IAuthentication
 {
+	public Task Create(string ConnectionID, string Host);
 }

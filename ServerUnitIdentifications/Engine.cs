@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ServerUnitIdentifications;
@@ -12,18 +13,51 @@ public class Engine:PongPing.IUnitIdentifications
     private Guid _ID = Guid.Empty;
     private readonly Product.Infomation PI;
     private string _Token = null!;
-    public Engine(IDbContextFactory<ServerStorages.OSAndClaimsContext> DbContextFactory,IHubContext<PongPing.Services> HubContext,ServerToken.Engine STE,Product.Infomation PI)
+
+    public string GetISO3166 {
+        get {
+            using var Db = this.DbContextFactory.CreateDbContext();
+            return Db.UnitIdentifications.Single(x => x.Id == _ID).Iso3166;
+        }
+    }
+
+    public string GetISO639_1
+	{
+		get
+		{
+			using var Db = this.DbContextFactory.CreateDbContext();
+			return Db.UnitIdentifications.Single(x => x.Id == _ID).Iso6391;
+		}
+	}
+
+	public Engine(IDbContextFactory<ServerStorages.OSAndClaimsContext> DbContextFactory,IHubContext<PongPing.Services> HubContext,ServerToken.Engine STE,Product.Infomation PI)
     {
         this.HubContext = HubContext;
         this.DbContextFactory = DbContextFactory;
         this.STE = STE;
         this.PI = PI;
+        if (!BackgroundService) {
+            BackgroundService = true;
+            _ = BackgroundAction(DbContextFactory).ConfigureAwait(false);
+
+		}
     }
-    private async Task UpdateUI() {
-   
+    public async Task UpdateUI() {
         using var Db = this.DbContextFactory.CreateDbContext();
         var D_UI = Db.UnitIdentifications.Single(x => x.Id == _ID);
-
+        DateTime E = DateTime.UtcNow.AddDays(14);
+        if (D_UI.UnitUsers.Any(x => x.IsVerified && x.IsActive)) {
+            var UU = D_UI.UnitUsers.Single(x => x.IsVerified && x.IsActive);
+            var U = UU.User;
+            E = DateTime.UtcNow.AddDays(U.ExpiresNumberOfDays).AddMonths(U.ExpiresNumberOfMonths).AddYears(U.ExpiresNumberOfYears);
+            if (UU.Expires < E)
+				UU.Expires = E;
+			if (U.Expires < E) 
+                U.Expires = E;
+        }
+        if (D_UI.AutomaticDeletion < E)
+			D_UI.AutomaticDeletion = E;
+		Db.SaveChanges();
         await this.HubContext.Clients.Clients(D_UI.UnitConnections.Select(x => x.Value).ToArray()).SendAsync("UI_S", _Token, D_UI.UnitUsers.Any(x => x.IsActive), PI.ISO639_1s.Any(x => x == D_UI.Iso6391) ? D_UI.Iso6391 : "EN",D_UI.Iso3166);
     }
     private void AddConnection(string ConnectionID, string Host) {
@@ -86,7 +120,7 @@ public class Engine:PongPing.IUnitIdentifications
         }
         return Task.CompletedTask;
     }
-    private Task<Guid> GetID(string ConnectionID, string Host) {
+    public Task<Guid> GetID(string ConnectionID, string Host) {
 		using var Db = this.DbContextFactory.CreateDbContext();
         return Task.FromResult(_ID = Db.UnitConnections.Single(x => x.Host == Host && x.Value == ConnectionID).UnitIdentificationId);
 	}
@@ -94,9 +128,42 @@ public class Engine:PongPing.IUnitIdentifications
         await GetID(ConnectionID, Host);
         using var Db = this.DbContextFactory.CreateDbContext();
         var UI = Db.UnitIdentifications.Single(x => x.Id == _ID);
-        UI.Iso3166 = Value;
+        if (UI.UnitUsers.Any(x => x.IsVerified && x.IsActive)) {
+            var U = UI.UnitUsers.Single(x => x.IsVerified && x.IsActive).User;
+            U.Iso3166 = Value;
+            //send update to all devices
+		}
+		UI.Iso3166 = Value;
         Db.SaveChanges();
         await this.UpdateUI();
     }
-
+    private static bool BackgroundService { get; set; } = false;
+    private static async Task BackgroundAction(IDbContextFactory<ServerStorages.OSAndClaimsContext> DbContextFactory) {
+        using (var Db = DbContextFactory.CreateDbContext())
+        {
+			if (Db.UnitIdentifications.Any(x => x.AutomaticDeletion < DateTime.UtcNow))
+			{
+				Db.UnitIdentifications.RemoveRange(Db.UnitIdentifications.Where(x => x.AutomaticDeletion < DateTime.UtcNow));
+				Db.SaveChanges();
+			}
+		}
+		using (var Db = DbContextFactory.CreateDbContext())
+		{
+			if (Db.UnitUsers.Any(x => x.Expires < DateTime.UtcNow))
+			{
+				Db.UnitUsers.RemoveRange(Db.UnitUsers.Where(x => x.Expires < DateTime.UtcNow));
+				Db.SaveChanges();
+			}
+		}
+		using (var Db = DbContextFactory.CreateDbContext())
+		{
+			if (Db.Users.Any(x => x.Expires < DateTime.UtcNow))
+			{
+				Db.Users.RemoveRange(Db.Users.Where(x => x.Expires < DateTime.UtcNow));
+				Db.SaveChanges();
+			}
+		}
+		await Task.Delay(TimeSpan.FromHours(1));
+        await BackgroundAction(DbContextFactory).ConfigureAwait(false); 
+    }
 }

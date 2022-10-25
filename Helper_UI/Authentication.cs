@@ -1,4 +1,5 @@
 ﻿using Helper_UI.authentication;
+using Microsoft.AspNetCore.SignalR.Client;
 using Product.infomation;
 
 namespace Helper_UI;
@@ -49,11 +50,17 @@ public class Authentication
 		this.UIE.ISO3166 = ISO3166;
 		this.CancelToAuthentication();
 	}
-	public void CreateAnAccount() { 
-	
+	public async void CreateAnAccount() {
+		this.PmT.Install();
+		await this.PPE.Hub.InvokeAsync("A_C");
+		this.PmT.Done();
 	}
 	private readonly UnitIdentification.Engine UIE;
-	public Authentication(UnitIdentification.Engine UIE) {
+	private readonly PingPong.Engine PPE;
+	private readonly Progress.manager.Task PmT;
+	public Authentication(UnitIdentification.Engine UIE,PingPong.Engine PPE,Progress.Manager PM) {
 		this.UIE = UIE;
+		this.PPE = PPE;
+		this.PmT = PM.Register;
 	}
 }

@@ -23,15 +23,18 @@ public class Storage: ControllerBase
     public bool Save(StandardInternal.websiteBehind.Data Data)
     {
         if (Data.Type is StandardInternal.unitIdentification.storage.Type.Local) {
-            if (HttpContext.Session.Keys.Any(x => x == "SUI")) 
-                HttpContext.Session.Clear();
-            Response.Cookies.Append("CUI", Data.Token, new Microsoft.AspNetCore.Http.CookieOptions { Expires = DateTime.UtcNow.AddMonths(3), IsEssential = true, HttpOnly = true, SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict, Secure = true });
-            return true;
+            Response.Cookies.Append("CUI", Data.Token, new Microsoft.AspNetCore.Http.CookieOptions { Expires = DateTime.UtcNow.AddMonths(3), IsEssential = true, HttpOnly = true, SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax, Secure = true });
+			if (HttpContext.Session.Keys.Any(x => x == "SUI"))
+			{
+				HttpContext.Session.Remove("SUI");
+				HttpContext.Session.Clear();
+			}
+			return true;
         }
-        if (Request.Cookies.Any(x => x.Key == "CUI")) 
-            Response.Cookies.Delete("CUI");
         HttpContext.Session.SetString("SUI", Data.Token);
-        return true;
+		if (Request.Cookies.Any(x => x.Key == "CUI"))
+			Response.Cookies.Delete("CUI");
+		return true;
     }
     [Route("websitebehind/storage/type")]
     [HttpGet]

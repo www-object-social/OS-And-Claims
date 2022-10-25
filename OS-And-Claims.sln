@@ -106,6 +106,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helper_UI", "Helper_UI\Help
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerAuthentication", "ServerAuthentication\ServerAuthentication.csproj", "{B077A5F7-492C-48DF-96F9-BF350BEF367E}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DatabaseUser", "DatabaseUser\DatabaseUser.sqlproj", "{39203E5E-1D15-4E6F-BA96-8BCFD842909C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -302,6 +304,12 @@ Global
 		{B077A5F7-492C-48DF-96F9-BF350BEF367E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B077A5F7-492C-48DF-96F9-BF350BEF367E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B077A5F7-492C-48DF-96F9-BF350BEF367E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39203E5E-1D15-4E6F-BA96-8BCFD842909C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39203E5E-1D15-4E6F-BA96-8BCFD842909C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39203E5E-1D15-4E6F-BA96-8BCFD842909C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{39203E5E-1D15-4E6F-BA96-8BCFD842909C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39203E5E-1D15-4E6F-BA96-8BCFD842909C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39203E5E-1D15-4E6F-BA96-8BCFD842909C}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -351,6 +359,7 @@ Global
 		{E2401857-2B2E-4C5E-9583-991493A3B037} = {01ED77AC-CFFA-4293-B5D8-8A87C3578FE1}
 		{A50287D6-F2B1-4CEE-BAC1-078EACE48165} = {21806DFE-A404-45F4-B1EA-B7F191CFBEA2}
 		{B077A5F7-492C-48DF-96F9-BF350BEF367E} = {A581BE97-4F92-44ED-A163-7E17DE58DE70}
+		{39203E5E-1D15-4E6F-BA96-8BCFD842909C} = {C2DC2FA4-E297-4109-B774-6972B2F332B9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}

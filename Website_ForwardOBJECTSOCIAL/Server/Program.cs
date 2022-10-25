@@ -14,7 +14,6 @@ builder.Services.AddScoped(x => new Product.Infomation { Name = StandardInternal
 #endif
 });
 builder.Services.AddResponseCaching();
-
 builder.Services.AddSignalR();
 builder.Services.AddCors(p => p.AddPolicy("corsapp", x => x.WithOrigins("*").AllowAnyMethod().AllowAnyHeader()));
 builder.Services.AddDbContextFactory<ServerStorages.OSAndClaimsContext>(x => x.UseSqlServer(new Func<string>(() => {if (!"database-connection".HaveFile()){"database-connection".WriteFile("Data Source");throw new Exception("Error we have created a file in %ProgramData% called database-connection.os-and-claims in which you can place Data source");}return "database-connection".ReadFile();})()).UseLazyLoadingProxies());

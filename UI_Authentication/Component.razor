@@ -2,7 +2,8 @@
 @inject Progress.Manager _PM;
 @inject UnitIdentification.Engine UIE;
 @inject Helper_UI.Authentication HUIA;
-<span>
+@if (this.UIE.AnyUser) return;
+<object>
     <UI_020b1bccContainer.Component>
         <Content>
             <object data="/_content/UI_Product_Logo/OBJECTSOCIAL.svg" class="logo-background" />
@@ -1063,7 +1064,7 @@
             <img src="/_content/UI_Authentication/security.png" class="security" />
         </Content>
     </UI_020b1bccContainer.Component>
-</span>
+</object>
 @code{
     [Parameter]
     public RenderFragment StartCondition{ get; set; } = null!;

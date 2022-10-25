@@ -23,6 +23,7 @@ namespace ServerStorages
         public virtual DbSet<UnitConnection> UnitConnections { get; set; } = null!;
         public virtual DbSet<UnitIdentification> UnitIdentifications { get; set; } = null!;
         public virtual DbSet<UnitUser> UnitUsers { get; set; } = null!;
+        public virtual DbSet<User> Users { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -134,12 +135,44 @@ namespace ServerStorages
                     .ValueGeneratedNever()
                     .HasColumnName("ID");
 
+                entity.Property(e => e.Created).HasColumnType("datetime");
+
+                entity.Property(e => e.Expires).HasColumnType("datetime");
+
                 entity.Property(e => e.UnitIdentificationId).HasColumnName("UnitIdentificationID");
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
 
                 entity.HasOne(d => d.UnitIdentification)
                     .WithMany(p => p.UnitUsers)
                     .HasForeignKey(d => d.UnitIdentificationId)
                     .HasConstraintName("FK_UnitUsers_ToUnitIdentifications");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UnitUsers)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_UnitUsers_ToUser");
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("User");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
+
+                entity.Property(e => e.Created).HasColumnType("datetime");
+
+                entity.Property(e => e.Expires).HasColumnType("datetime");
+
+                entity.Property(e => e.Iso3166)
+                    .HasMaxLength(2)
+                    .HasColumnName("ISO3166");
+
+                entity.Property(e => e.Iso6391)
+                    .HasMaxLength(2)
+                    .HasColumnName("ISO639_1");
             });
 
             OnModelCreatingPartial(modelBuilder);
